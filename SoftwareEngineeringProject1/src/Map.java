@@ -1,4 +1,3 @@
-package Team5-OptimalDelivery;
 
 import java.util.*;
 import java.util.Arrays;
