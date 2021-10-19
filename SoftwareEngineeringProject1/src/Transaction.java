@@ -1,6 +1,6 @@
 public class Transaction {
-    private DeliveryPoint deliveryPoint;
-    private PickUp pickupPoint;
+    private final DeliveryPoint deliveryPoint;
+    private final PickUp pickupPoint;
 
     public Transaction(PickUp p, DeliveryPoint d) {
         this.pickupPoint = p;
@@ -12,6 +12,7 @@ public class Transaction {
     }
 
     public DeliveryPoint getDeliveryPoint() {
+
         return this.deliveryPoint;
     }
 }

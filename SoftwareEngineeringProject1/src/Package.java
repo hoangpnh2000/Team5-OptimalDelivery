@@ -25,12 +25,12 @@ public class Package {
         return this.originX;
     }
 
-    public int getOriginY() {
-        return this.originY;
-    }
-
     public void setOriginX(int x) {
         this.originX = x;
+    }
+
+    public int getOriginY() {
+        return this.originY;
     }
 
     public void setOriginY(int y) {

@@ -1,24 +1,25 @@
-
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Map {
     //Global variables
     public static String[][] completedMap;
-//    public static Map[][] ;
+    //    public static Map[][] ;
     public static ArrayList<Truck> listTruck;
     public static ArrayList<Integer> listPickup;
-    public static ArrayList<Integer> deliveryLocation;
+    public static ArrayList<Integer> listDelivery;
 
 
     //Creates randomized map
-    public static String[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
+    public static String[][] generate(int rows, int columns, int numTrucks, int numPickup, int numDelivery) {
         completedMap = new String[rows][columns];
         listTruck = new ArrayList<Truck>();
         listPickup = new ArrayList<Integer>();
-        deliveryLocation = new ArrayList<Integer>();
-        for (String[] row: completedMap) {
+        listDelivery = new ArrayList<Integer>();
+        for (String[] row : completedMap) {
             Arrays.fill(row, "*");
         }
         try {
@@ -43,36 +44,35 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i]%rows, temp[i] / rows,  60);  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0);  //Arbitrary values for now
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
                 else if (i < numPickup + numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
+                    PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3);  //Arbitrary values for now
+
                     listPickup.add(temp[i]);
                 }
                 //Delivery has identifier of String "D" in matrix
                 else {
                     completedMap[temp[i] % rows][temp[i] / rows] = "D";
-                    deliveryLocation.add(temp[i]);
+                    listDelivery.add(temp[i]);
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Something went wrong. \nCheck for invalid inputs.");
         }
 
         //Print for debugging
-        for (int i = 0; i < rows; i ++){
+        for (int i = 0; i < rows; i++) {
             System.out.println();
-            for (int j = 0; j < columns; j ++) {
+            for (int j = 0; j < columns; j++) {
                 System.out.print(completedMap[i][j] + " ");
             }
         }
         return completedMap;
     }
-
-
 
 
     public String CustomException(String message) {

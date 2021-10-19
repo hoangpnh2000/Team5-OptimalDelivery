@@ -1,4 +1,3 @@
-
 public class Truck {
     //Fields
     public int currentFuel;
@@ -6,15 +5,16 @@ public class Truck {
     public int locationX;
     public int locationY;
     public int speed;
-    public boolean hasPackage;
+    public int numPackages;
 
     //Constructor
-    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed) {
+    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed, int numPackages) {
         this.currentFuel = currentFuel;
         this.fuelCapacity = fuelCapacity;
         this.locationX = locationX;
         this.locationY = locationY;
         this.speed = speed;
+        this.numPackages = numPackages;
     }
 
     //Get Methods
@@ -22,35 +22,37 @@ public class Truck {
         return this.currentFuel;
     }
 
-    public int getFuelCapacity() {
-        return this.fuelCapacity;
-    }
-
-    public int getLocationX() {
-        return this.locationX;
-    }
-    public int getLocationY() {
-        return this.locationY;
-    }
-
-    public int getSpeed() {
-        return this.speed;
-    }
-
     //Set methods
     public void setCurrentFuel(int n) {
         this.currentFuel = n;
+    }
+
+    public int getFuelCapacity() {
+        return this.fuelCapacity;
     }
 
     public void setFuelCapacity(int n) {
         this.fuelCapacity = n;
     }
 
+    public int getLocationX() {
+        return this.locationX;
+    }
+
     public void setLocationX(int x) {
         this.locationX = x;
     }
+
+    public int getLocationY() {
+        return this.locationY;
+    }
+
     public void setLocationY(int y) {
         this.locationY = y;
+    }
+
+    public int getSpeed() {
+        return this.speed;
     }
 
     public void setSpeed(int n) {
