@@ -1,11 +1,11 @@
-public class Pickup {
-    public Pickup() {
+public class PickUp {
+    public PickUp() {
     }
     public boolean PickedUp = false;
     public String PickUpPoint = "P";
 
     public static void main(String args[]) {
-        Pickup pick1 = new Pickup();
+        PickUp pick1 = new PickUp();
         System.out.println(pick1.PickedUp);
         System.out.println(pick1.PickUpPoint);
     }
