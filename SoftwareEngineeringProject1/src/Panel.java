@@ -1,11 +1,8 @@
-package main;
-
-
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.JPanel;
 
@@ -53,11 +50,11 @@ public class Panel extends JPanel implements Runnable {
 	public void update() {
 		
 	}
-	
-	
+
+
 	
 	public void paintComponent(Graphics g) {
-		int[][] M=new int[50][50];
+		String[][] M= new String[50][50];
 
 		
 		super.paintComponent(g);
@@ -68,13 +65,13 @@ public class Panel extends JPanel implements Runnable {
 		M=map.generate(5, 5, 1, 1, 1);
 		for(int i=0;i<M.length;i++) {
 			for(int j=0;j<M.length;j++) {
-				if(M[i][j]==1) {
+				if(M[i][j].equals(1)) {
 					g2.setColor(Color.RED);
 					g2.fillRect(j*30,i*30,tileSize/2,tileSize/2);
-				}else if(M[i][j]==2) {
+				}else if(M[i][j].equals(2)) {
 					g2.setColor(Color.BLUE);
 					g2.fillRect(j*30,i*30,tileSize/2,tileSize/2);
-				}else if(M[i][j]==3) {
+				}else if(M[i][j].equals(3)) {
 					g2.setColor(Color.GREEN);
 					g2.fillRect(j*30,i*30,tileSize/2,tileSize/2);
 			    }else {
