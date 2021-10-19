@@ -1,12 +1,12 @@
 public class Pickup {
     public Pickup() {
     }
-    public boolean delivered = false;
-    public String deliverypoint = "P";
+    public boolean PickedUp = false;
+    public String PickUppoint = "P";
 
     public static void main(String args[]) {
         Pickup pick1 = new Pickup();
-        System.out.println(pick1.delivered);
-        System.out.println(pick1.deliverypoint);
+        System.out.println(pick1.PickedUp);
+        System.out.println(pick1.PickUppoint);
     }
 }
