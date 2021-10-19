@@ -3,9 +3,23 @@ import java.util.Arrays;
 
 
 public class Map {
+    //Global variables
+    public static String[][] completedMap;
+    ArrayList<String> cars = new ArrayList<String>(); // Create an ArrayList object
+
+
+
+    public static ArrayList<Integer> truckLocation;
+    public static ArrayList<Integer> pickupLocation;
+    public static ArrayList<Integer> deliveryLocation;
+
+
     //Creates randomized map
     public static String[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
-        String[][] completedMap = new String[rows][columns];
+        completedMap = new String[rows][columns];
+        truckLocation = new ArrayList<Integer>();
+        pickupLocation = new ArrayList<Integer>();
+        deliveryLocation = new ArrayList<Integer>();
         for (String[] row: completedMap) {
             Arrays.fill(row, "*");
         }
@@ -30,14 +44,17 @@ public class Map {
                 //Trucks have identifier of int 1
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
+                    truckLocation.add(temp[i]);
                 }
                 //Pickup has identifier of int 1
                 else if (i < numPickup + numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
+                    pickupLocation.add(temp[i]);
                 }
                 //Delivery has identifier of int 3
                 else {
                     completedMap[temp[i] % rows][temp[i] / rows] = "D";
+                    deliveryLocation.add(temp[i]);
                 }
             }
         }
@@ -53,6 +70,9 @@ public class Map {
             }
         }
         return completedMap;
+    }
+    public static int findTrucks (String[][] map){
+        
     }
 
 }
