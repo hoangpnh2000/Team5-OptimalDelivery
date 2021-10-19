@@ -20,14 +20,15 @@ public class Panel extends JPanel implements Runnable {
 	final int maxScreenRow=12;
 	final int  screenWidth= tileSize*maxScreenCol; //768 pixels
 	final int screenHeight= tileSize*maxScreenRow; //576 pixels
-	
+	String[][] M=new String[5000][5000];
 	Thread runThread;
 	
 	public Panel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
-		
+		Map map= new Map();
+		M=map.generate(10,10, 2, 1, 5);
 		
 	}
 	
@@ -55,12 +56,11 @@ public class Panel extends JPanel implements Runnable {
 	public void update() {
 	}
 	public void paintComponent(Graphics g) {
-		String[][] M=new String[5000][5000];
+	
 
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
-		Map map= new Map();
-		M=map.generate(10,10, 1, 1, 1);
+		
 		for(int i=0;i<M.length;i++) {
 			for(int j=0;j<M.length;j++) {
 				if(M[i][j].equals("T")) {
