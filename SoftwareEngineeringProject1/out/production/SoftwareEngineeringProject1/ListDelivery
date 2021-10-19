@@ -1,0 +1,57 @@
+package Team5-OptimalDelivery;
+
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+
+public class ListDelivery {
+    public void run() {
+        String command;
+        int numPickUp, numDelivery = 0;
+
+        System.out.println("List Delivery starts running.");
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Please enter number of Trucks Company owns.");
+        try{
+            int numTrucks = Integer.parseInt(input.nextLine());
+        }catch(NumberFormatException e)
+
+        System.out.println("Please enter the delivery size of the map.");
+        try{
+            int mapSize = Integer.parseInt(input.nextLine());
+        }catch(NumberFormatException e)
+
+        while (input.hasNextLine()) {
+            System.out.println("Input A to add pickup and delivery, Q to quit.(Followed by comma)");
+            System.out.println("And then input the pickup and delivery points.");
+            String line = input.nextLine();
+            if (line == "")
+                continue;
+            StringTokenizer commandLine = new StringTokenizer(line);
+            command = commandLine.nextToken(",");
+            if (command.equals("A")) {
+                this.addPickUpAndDeliveryPoint(commandLine);
+                numPickUp++;
+                numDelivery++;
+            }
+            else if (command.equals("Q"))
+                break;
+            else
+                System.out.println("Command \'" + command + "\' not supported!");
+        }
+        //Enter in truck details here
+        input.close();
+
+        Map map = new Map();
+        System.out.println(map.generate(mapSize,mapSize,numTrucks,numPickUp,numDelivery));
+        System.out.println("List Delivery terminated.");
+    }
+
+    public void addPickUpAndDeliveryPoint(StringTokenizer commandLine){
+        //initializes the Pick up point and Deivery point object
+        //adds it to the list manager
+
+    }
+
+   }

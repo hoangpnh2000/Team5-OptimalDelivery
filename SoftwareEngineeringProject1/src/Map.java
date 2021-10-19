@@ -8,7 +8,7 @@ public class Map {
     public static String[][] completedMap;
 //    public static Map[][] ;
     public static ArrayList<Truck> listTruck;
-    public static ArrayList<Integer> pickupLocation;
+    public static ArrayList<Integer> listPickup;
     public static ArrayList<Integer> deliveryLocation;
 
 
@@ -16,7 +16,7 @@ public class Map {
     public static String[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
         completedMap = new String[rows][columns];
         listTruck = new ArrayList<Truck>();
-        pickupLocation = new ArrayList<Integer>();
+        listPickup = new ArrayList<Integer>();
         deliveryLocation = new ArrayList<Integer>();
         for (String[] row: completedMap) {
             Arrays.fill(row, "*");
@@ -39,19 +39,19 @@ public class Map {
             //Iterates through converted set, populates matrix
             for (int i = 0; i < rows; i++) {
 
-                //Trucks have identifier of int 1
+                //Trucks have identifier of String "T" in matrix
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
-                    //Create Truck object, add to list
+                    //Create Truck object, add to list of all available trucks
                     Truck truck = new Truck(50, 100, temp[i], 60);  //Arbitrary values for now
                     listTruck.add(truck);
                 }
-                //Pickup has identifier of int 1
+                //Pickup has identifier of String "P" in matrix
                 else if (i < numPickup + numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
-                    pickupLocation.add(temp[i]);
+                    listPickup.add(temp[i]);
                 }
-                //Delivery has identifier of int 3
+                //Delivery has identifier of String "D" in matrix
                 else {
                     completedMap[temp[i] % rows][temp[i] / rows] = "D";
                     deliveryLocation.add(temp[i]);

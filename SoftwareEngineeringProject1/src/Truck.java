@@ -7,7 +7,7 @@ public class Truck {
     public int speed;
 
     //Constructor
-    public Truck (int currentFuel, int fuelCapacity, int location, int speed) {
+    public Truck(int currentFuel, int fuelCapacity, int location, int speed) {
         this.currentFuel = currentFuel;
         this.fuelCapacity = fuelCapacity;
         this.location = location;
@@ -15,16 +15,19 @@ public class Truck {
     }
 
     //Get Methods
-    public int getCurrentFuel(){
+    public int getCurrentFuel() {
         return this.currentFuel;
     }
-    public int getFuelCapacity(){
+
+    public int getFuelCapacity() {
         return this.fuelCapacity;
     }
-    public int getLocation(){
+
+    public int getLocation() {
         return this.location;
     }
-    public int getSpeed(){
+
+    public int getSpeed() {
         return this.speed;
     }
 
@@ -32,13 +35,16 @@ public class Truck {
     public void setCurrentFuel(int n) {
         this.currentFuel = n;
     }
+
     public void setFuelCapacity(int n) {
         this.fuelCapacity = n;
     }
-    public void setLocation(int n){
+
+    public void setLocation(int n) {
         this.location = n;
     }
-    public void setSpeed(int n){
+
+    public void setSpeed(int n) {
         this.speed = n;
     }
 
@@ -47,7 +53,7 @@ public class Truck {
     public void refuel(int n) {
         this.currentFuel += n;
         //Check for overflow
-        if (this.currentFuel > this.fuelCapacity){
+        if (this.currentFuel > this.fuelCapacity) {
             this.currentFuel = this.fuelCapacity;
         }
     }
