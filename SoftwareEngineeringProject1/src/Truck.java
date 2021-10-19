@@ -3,14 +3,16 @@ public class Truck {
     //Fields
     public int currentFuel;
     public int fuelCapacity;
-    public int location;
+    public int locationX;
+    public int locationY;
     public int speed;
 
     //Constructor
-    public Truck(int currentFuel, int fuelCapacity, int location, int speed) {
+    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed) {
         this.currentFuel = currentFuel;
         this.fuelCapacity = fuelCapacity;
-        this.location = location;
+        this.locationX = locationX;
+        this.locationY = locationY;
         this.speed = speed;
     }
 
@@ -23,8 +25,11 @@ public class Truck {
         return this.fuelCapacity;
     }
 
-    public int getLocation() {
-        return this.location;
+    public int getLocationX() {
+        return this.locationX;
+    }
+    public int getLocationY() {
+        return this.locationY;
     }
 
     public int getSpeed() {
@@ -40,8 +45,11 @@ public class Truck {
         this.fuelCapacity = n;
     }
 
-    public void setLocation(int n) {
-        this.location = n;
+    public void setLocationX(int x) {
+        this.locationX = x;
+    }
+    public void setLocationY(int y) {
+        this.locationY = y;
     }
 
     public void setSpeed(int n) {
