@@ -1,3 +1,5 @@
+package Team5-OptimalDelivery;
+
 public class Truck {
     //Fields
     public int currentFuel;
