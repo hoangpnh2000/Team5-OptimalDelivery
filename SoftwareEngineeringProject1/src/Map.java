@@ -1,4 +1,3 @@
-package Team5-OptimalDelivery;
 
 import java.util.*;
 import java.util.Arrays;
@@ -7,11 +6,8 @@ import java.util.Arrays;
 public class Map {
     //Global variables
     public static String[][] completedMap;
-    ArrayList<String> cars = new ArrayList<String>(); // Create an ArrayList object
-
-
-
-    public static ArrayList<Integer> truckLocation;
+//    public static Map[][] ;
+    public static ArrayList<Truck> listTruck;
     public static ArrayList<Integer> pickupLocation;
     public static ArrayList<Integer> deliveryLocation;
 
@@ -19,7 +15,7 @@ public class Map {
     //Creates randomized map
     public static String[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
         completedMap = new String[rows][columns];
-        truckLocation = new ArrayList<Integer>();
+        listTruck = new ArrayList<Truck>();
         pickupLocation = new ArrayList<Integer>();
         deliveryLocation = new ArrayList<Integer>();
         for (String[] row: completedMap) {
@@ -46,7 +42,9 @@ public class Map {
                 //Trucks have identifier of int 1
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
-                    truckLocation.add(temp[i]);
+                    //Create Truck object, add to list
+                    Truck truck = new Truck(50, 100, temp[i], 60);  //Arbitrary values for now
+                    listTruck.add(truck);
                 }
                 //Pickup has identifier of int 1
                 else if (i < numPickup + numTrucks) {
@@ -73,8 +71,11 @@ public class Map {
         }
         return completedMap;
     }
-    public static int findTrucks (String[][] map){
-        
-    }
 
+    /*
+    //Spits out info for truck location
+    public static int findTrucks (String[][] map){
+
+    }
+    */
 }
