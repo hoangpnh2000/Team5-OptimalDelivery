@@ -12,14 +12,15 @@ public class RoutePlan {
 			routeDirections += " North ";
 		}
 		if (distx < 0) {
-			routeDirections += "West.";
+			routeDirections += "West ";
 		}
 		else {
-			routeDirections += "East.";
+			routeDirections += "East ";
 		}
+		routeDirections += distance + " spaces.";
 		return routeDirections;
 	}
 	public static void main(String[] args) {
-		System.out.println(routeCalculation(2, 2, 1, 1));
+		System.out.println(routeCalculation(0, 0, 1, 1));
 	}
 }
