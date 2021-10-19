@@ -1,9 +1,14 @@
 import java.util.*;
+import java.util.Arrays;
+
 
 public class Map {
     //Creates randomized map
-    public static int[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
-        int[][] completedMap = new int[rows][columns];
+    public static String[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
+        String[][] completedMap = new String[rows][columns];
+        for (String[] row: completedMap) {
+            Arrays.fill(row, "*");
+        }
         try {
             //Hashset for uniquely generated ints
             //Will be used to indicate locations in matrix of notable objects
@@ -24,15 +29,15 @@ public class Map {
 
                 //Trucks have identifier of int 1
                 if (i < numTrucks) {
-                    completedMap[temp[i] % rows][temp[i] / rows] = 1;
+                    completedMap[temp[i] % rows][temp[i] / rows] = "T";
                 }
                 //Pickup has identifier of int 1
                 else if (i < numPickup + numTrucks) {
-                    completedMap[temp[i] % rows][temp[i] / rows] = 2;
+                    completedMap[temp[i] % rows][temp[i] / rows] = "P";
                 }
                 //Delivery has identifier of int 3
                 else {
-                    completedMap[temp[i] % rows][temp[i] / rows] = 3;
+                    completedMap[temp[i] % rows][temp[i] / rows] = "D";
                 }
             }
         }
