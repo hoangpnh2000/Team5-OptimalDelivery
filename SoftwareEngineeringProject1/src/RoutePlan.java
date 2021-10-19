@@ -1,8 +1,8 @@
 import java.util.*;
 public class RoutePlan {
 	static String routeCalculation(int truckx, int trucky, int x, int y) {
-		int distx = truckx - x;
-		int disty = trucky - y;
+		int distx = x - truckx;
+		int disty = y - trucky;
 		double distance = Math.sqrt(distx^2+disty^2);
 		String routeDirections = "Please head";
 		if (y < 0) {
