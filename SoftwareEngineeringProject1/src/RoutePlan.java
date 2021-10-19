@@ -5,13 +5,13 @@ public class RoutePlan {
 		int disty = y - trucky;
 		double distance = Math.sqrt(distx^2+disty^2);
 		String routeDirections = "Please head";
-		if (y < 0) {
+		if (disty < 0) {
 			routeDirections += " South ";
 		}
 		else {
 			routeDirections += " North ";
 		}
-		if (x < 0) {
+		if (distx < 0) {
 			routeDirections += "West.";
 		}
 		else {
@@ -20,6 +20,6 @@ public class RoutePlan {
 		return routeDirections;
 	}
 	public static void main(String[] args) {
-		System.out.println(routeCalculation(0, 0, 1, 1));
+		System.out.println(routeCalculation(2, 2, 1, 1));
 	}
 }
