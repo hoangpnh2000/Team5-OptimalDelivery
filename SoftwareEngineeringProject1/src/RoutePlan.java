@@ -3,7 +3,7 @@ public class RoutePlan {
 	static String routeCalculation(int truckx, int trucky, int x, int y) {
 		int distx = x - truckx;
 		int disty = y - trucky;
-		double distance = Math.sqrt(distx^2+disty^2);
+		double distance = Math.sqrt(Math.pow(distx, 2)+Math.pow(disty,2));
 		String routeDirections = "Please head";
 		if (disty < 0) {
 			routeDirections += " South ";
