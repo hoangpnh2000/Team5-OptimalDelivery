@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package main;
 
 import javax.swing.JFrame;
@@ -27,4 +28,17 @@ public class Main {
 
 		}
 
+=======
+import javax.swing.JFrame;
+
+public class Main {
+	public static void main(String args[]){
+		//Map map = new Map();
+		//System.out.println(map.generate(10,10,3,5,5));
+		
+		FirstPage page1 = new FirstPage();
+		page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		System.out.println("Opening First Page");
+	}
+>>>>>>> Stashed changes
 }
