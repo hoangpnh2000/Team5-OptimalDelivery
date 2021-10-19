@@ -6,6 +6,7 @@ public class Truck {
     public int locationX;
     public int locationY;
     public int speed;
+    public boolean hasPackage;
 
     //Constructor
     public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed) {

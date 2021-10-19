@@ -43,7 +43,7 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i], 60);  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i]%rows, temp[i] / rows,  60);  //Arbitrary values for now
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
@@ -72,6 +72,13 @@ public class Map {
         return completedMap;
     }
 
+
+
+
+    public String CustomException(String message) {
+        return message;
+        //handle the exception here.
+    }
     /*
     //Spits out info for truck location
     public static int findTrucks (String[][] map){
