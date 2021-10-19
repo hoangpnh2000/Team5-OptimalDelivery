@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class generateMap {
+public class Map {
     //Creates randomized map
-    public static int[][] mapGeneration (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
+    public static int[][] generate (int rows, int columns, int numTrucks, int numPickup, int numDelivery){
         int[][] completedMap = new int[rows][columns];
         try {
             //Hashset for uniquely generated ints
