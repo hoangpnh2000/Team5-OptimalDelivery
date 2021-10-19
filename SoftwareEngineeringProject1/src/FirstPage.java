@@ -1,3 +1,4 @@
+package main;
 //import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -42,6 +43,21 @@ public class FirstPage extends JFrame{
 		seeMapButton = new JButton("Map");
 		seeMapButton.setBounds(10, 105, 280, 50);
 		contentPane.add(seeMapButton);
+		seeMapButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent a){
+				@SuppressWarnings("unused")
+				JFrame window= new JFrame();
+				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				window.setResizable(false);
+				window.setTitle("2D Adventure");
+				Panel panel= new Panel();
+				window.add(panel);
+				window.pack();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
+				//dispose();
+			}
+		});
 		
 		seeTransactionsButton = new JButton("List of Transactions");
 		seeTransactionsButton.setBounds(10, 155, 280, 50);
