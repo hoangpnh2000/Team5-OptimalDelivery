@@ -1,24 +1,16 @@
 public class Package {
     //Fields
-    public boolean isPickedUp;
-    public boolean isDelivered;
+    public boolean onTruck;
+    public boolean delivered;
     public int originX;
     public int originY;
 
     //Constructor
-    public Package(boolean isPickedUp, boolean isDelivered, int originX, int originY) {
-        this.isPickedUp = isPickedUp;
-        this.isDelivered = isDelivered;
+    public Package(boolean onTruck, boolean delivered, int originX, int originY) {
+        this.onTruck = onTruck;
+        this.delivered = delivered;
         this.originX = originX;
         this.originY = originY;
-    }
-
-    public boolean isPickedUp() {
-        return this.isPickedUp;
-    }
-
-    public boolean isDelivered() {
-        return this.isDelivered;
     }
 
     public int getOriginX() {

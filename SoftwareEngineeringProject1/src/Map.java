@@ -27,7 +27,7 @@ public class Map {
             //Will be used to indicate locations in matrix of notable objects
             //Set will be unsorted
             Set<Integer> set = new HashSet<>();
-            //Generates random number within range, typecasts to int
+            //Generates random number within range, cast to int
             for (int i = 0; i < numTrucks + numPickup + numDelivery; i++) {
                 int max = rows * columns - 1;
                 int min = 0;
