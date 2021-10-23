@@ -54,11 +54,19 @@ public class Route {
 
 /*
 
+
+How do I determine which truck goes to which pickup location
+How do i determine what packages each truck picks up at each pickup location
+How do I determine whether or not a truck visits another pickup location?
+
+
+
+
 Num trucks < num pickup locations
     Each truck goes to nearest unoccupied pickup location and picks up all packages
     Uses dijkstra algorithm to find the shortest route to deliver all packages for each truck
     If the truck is within n tiles of another unclaimed pickup station OR if truck is done with all packages, reroutes to the unclaimed pickup station
-        Reuses dijkstra algorithm to find shortest path
+        Reuses dijkstra algorithm to find the new shortest path
     Day ends when all packages have been delivered
 
 Num trucks == num pickup locations
@@ -81,5 +89,10 @@ Num Trucks > num pickup locations
         }
 
 
+
+
+
+
+lengthofroute/numpakcages to find the most efficient route
  */
 
