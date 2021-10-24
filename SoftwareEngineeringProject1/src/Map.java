@@ -1,24 +1,21 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 public class Map {
     //Global variables
     public static String[][] completedMap;
-    //    public static Map[][] ;
     public static ArrayList<Truck> listTruck;
-    public static ArrayList<Integer> listPickup;
-    public static ArrayList<Integer> listDelivery;
+    public static ArrayList<PickUp> listPickup;
+    public static ArrayList<DeliveryPoint> listDelivery;
+    public static WeightedGraph.Graph mapGraph;
 
 
     //Creates randomized map
     public static String[][] generate(int rows, int columns, int numTrucks, int numPickup, int numDelivery) {
         completedMap = new String[rows][columns];
         listTruck = new ArrayList<Truck>();
-        listPickup = new ArrayList<Integer>();
-        listDelivery = new ArrayList<Integer>();
+        listPickup = new ArrayList<PickUp>();
+        listDelivery = new ArrayList<DeliveryPoint>();
         for (String[] row : completedMap) {
             Arrays.fill(row, "*");
         }
@@ -52,12 +49,13 @@ public class Map {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
                     PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3);  //Arbitrary values for now
 
-                    listPickup.add(temp[i]);
+                    listPickup.add(pickup);
                 }
                 //Delivery has identifier of String "D" in matrix
                 else {
                     completedMap[temp[i] % rows][temp[i] / rows] = "D";
-                    listDelivery.add(temp[i]);
+                    DeliveryPoint delivery = new DeliveryPoint(false, temp[i] % rows, temp[i] / rows);  //Arbitrary values for now
+                    listDelivery.add(delivery);
                 }
             }
         } catch (Exception e) {
@@ -74,11 +72,26 @@ public class Map {
         return completedMap;
     }
 
-
-    public String CustomException(String message) {
-        return message;
-        //handle the exception here.
+    //Creates graphical representation of Map
+    public void createGraph (int numVertices, ArrayList<Truck> listTruck) {
+        mapGraph = new WeightedGraph.Graph(numVertices);
+        for (int i = 0; i < listTruck.size(); i++){
+            for (int j = 0; j < listPickup.size(); j++){
+                int distX = listPickup.get(j).locationX;
+                int distY = listPickup.get(j).locationY;
+                double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).locationX, 2) + Math.pow(distY - listTruck.get(i).locationY, 2));
+                mapGraph.addEdge(i,listTruck.size() + j, dist);
+            }
+            for (int j = 0; j < listDelivery.size(); j++){
+                int distX = listDelivery.get(j).locationX;
+                int distY = listDelivery.get(j).locationY;
+                double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).locationX, 2) + Math.pow(distY - listTruck.get(i).locationY, 2));
+                mapGraph.addEdge(i,listTruck.size() + listPickup.size() + j, dist);
+            }
+        }
+        //Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0);  //Arbitrary values for now
     }
+
     /*
     //Spits out info for truck location
     public static int findTrucks (String[][] map){

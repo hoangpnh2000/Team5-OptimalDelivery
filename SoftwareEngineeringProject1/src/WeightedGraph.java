@@ -1,11 +1,13 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class WeightedGraph {
+
     static class Edge {
-        int src, dest, distance;
+        int src, dest;
+        double distance;
 
         //Constructor
-        public Edge(int src, int dest, int distance) {
+        public Edge(int src, int dest, double distance) {
             this.src = src;
             this.dest = dest;
             this.distance = distance;
@@ -16,7 +18,7 @@ public class WeightedGraph {
         int vertices;
         //Initialize adj list for all vertices
         LinkedList<Edge> [] adjacencylist;
-        Graph(int vertices) {
+        public Graph(int vertices) {
             this.vertices = vertices;
             adjacencylist = new LinkedList[vertices];
             for (int i = 0; i <vertices ; i++) {
@@ -24,7 +26,7 @@ public class WeightedGraph {
             }
         }
 
-        public void addEdge(int source, int dest, int distance) {
+        public void addEdge(int source, int dest, double distance) {
             Edge edge = new Edge(source, dest, distance);
             adjacencylist[source].addFirst(edge);
         }
