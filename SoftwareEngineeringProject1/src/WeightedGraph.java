@@ -30,7 +30,7 @@ public class WeightedGraph {
             Edge edge = new Edge(source, dest, distance);
             adjacencylist[source].addFirst(edge);
         }
-
+//test
         public void printGraph(){
             for (int i = 0; i <vertices ; i++) {
                 LinkedList<Edge> list = adjacencylist[i];
