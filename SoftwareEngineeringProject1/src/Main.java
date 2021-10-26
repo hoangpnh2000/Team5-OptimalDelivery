@@ -4,27 +4,28 @@ import javax.swing.*;
 
 public class Main {
 
+	private static Map map;
 
     public static void main(String[] args) {
 
     	// Generate map once Program Starts
     	Random rand = new Random();
-    	int rows = rand.nextInt(50);
-    	int columns = rand.nextInt(50);
+    	int rows = rand.nextInt(50) + 1;
+    	int columns = rand.nextInt(50) + 1;
     	int size = rows * columns;
     	int limit = size/3;
-    	int trucks = rand.nextInt(limit);
-    	int pickups = rand.nextInt(limit);
-    	int deliveries = rand.nextInt(limit);
+    	int trucks = rand.nextInt(limit) + 1;
+    	int pickups = rand.nextInt(limit) + 1;
+    	int deliveries = rand.nextInt(limit) + 1;
     	
-    	System.out.println("Map Generated");
     	System.out.println(rows+" by "+columns+" Map with "+trucks+" trucks and "
     			+pickups+" pick up points.");
     	
-    	Map map = new Map();
-    	String mat[][] = map.generate(rows,columns,trucks,pickups,deliveries);
+    	map = new Map();
+		System.out.println("Map Generated");
+		map.generate(rows,columns,trucks,pickups,deliveries);
 
-        FirstPage page1 = new FirstPage(map, mat);
+        FirstPage page1 = new FirstPage(map, Map.completedMap);
         page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         System.out.println("Opening First Page");
         

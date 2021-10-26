@@ -39,6 +39,8 @@ public class DeliveryPoint {
         return this.locationY;
     }
 
+    public String getName() {return this.name;}
+
     public boolean isPickedUp() {
         return this.delivered;
     }

@@ -5,16 +5,14 @@ public class Map {
     public static ArrayList<Truck> listTruck;
     public static ArrayList<PickUp> listPickup;
     public static ArrayList<DeliveryPoint> listDelivery;
-
     public static WeightedGraph.GraphWeighted mapGraph;
     public static int mapX;
     public static int mapY;
 
-
-
     //Creates randomized map
     public static String[][] generate(int rows, int columns, int numTrucks, int numPickup, int numDelivery) {
-        mapX = columns;mapY = rows;
+        mapX = columns;
+        mapY = rows;
         completedMap = new String[rows][columns];
         listTruck = new ArrayList<>();
         listPickup = new ArrayList<>();
@@ -35,10 +33,14 @@ public class Map {
                 set.add(temp);
             }
             //Convert set to array for easier manipulation
-            Integer[] temp = set.toArray(new Integer[0]);
+            System.out.println("the sizew of the set is " + set.size());
+            Integer[] temp = new Integer[set.size()];
+            set.toArray(temp);
+
+
 
             //Iterates through converted set, populates matrix
-            for (int i = 0; i < set.size(); i++) {
+            for (int i = 0; i < temp.length; i++) {
                 /*
                     Trucks have identifier from 0 to numTrucks-1 (inclusive)
                     Pickup locations have an identifier from numTrucks to  numTrucks+numPickup
@@ -48,15 +50,17 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, 360/numTrucks* i,360/numTrucks* (i+1));  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, 360/numTrucks* i,360/numTrucks*(i+1));  //Arbitrary values for now
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
                 else if (i < numTrucks + numPickup) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
                     PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3, PickUp.packageArrayList,"Pick up point" + i);  //Arbitrary values for now
-                    listPickup.add(pickup);
-                    pickup.generatePackages(pickup.getLocationX(), pickup.getLocationY());  //Generate packages for pickup location
+                        listPickup.add(pickup);
+                    pickup.generatePackages(pickup.locationX, pickup.locationY);  //Generate packages for pickup location
+
+                    //System.out.println(listPickup.get(i).getName());
                 }
                 //Delivery has identifier of String "D" in matrix
                 else {
@@ -71,16 +75,16 @@ public class Map {
 
         //Print for debugging
         for (int i = 0; i < rows; i++) {
-            System.out.println();
             for (int j = 0; j < columns; j++) {
                 System.out.print(completedMap[i][j] + " ");
             }
+            System.out.println();
         }
         return completedMap;
     }
 
     //Creates graphical representation of Map
-    public void createGraph (int numVertices, ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
+    public void createGraph (ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
         mapGraph = new WeightedGraph.GraphWeighted();
         for (int i = 0; i < listTruck.size(); i++){
             String truckName = "Truck " + i + 1;

@@ -1,15 +1,16 @@
 import java.util.*;
 public class PickUp {
 
-    private int locationX;
-    private int locationY;
+    public int locationX;
+    public int locationY;
     private int numPackages;
     private String pickUpPoint = "P";
     private String name;
-    public static ArrayList<Package> packageArrayList;
+    public static ArrayList<Package> packageArrayList = new ArrayList<Package>();
 
 
-    public PickUp(int locationX, int locationY, int numPackages, ArrayList<Package> packageArrayList, String name) {
+
+    public PickUp(int locationX, int locationY, int numPackages,ArrayList<Package> packageArrayList, String name) {
         this.locationX = locationX;
         this.locationY = locationY;
         this.numPackages = numPackages;
@@ -25,24 +26,17 @@ public class PickUp {
     }
 
     public static void generatePackages(int pickupX, int pickupY){
-        int max = Map.mapX * Map.mapY - 1;
-        int min = 0;
+        int max = 3;
+        int min = 1;
         int temp1 = (int) Math.floor(Math.random() * (max - min + 1) + min);
         int temp2 = (int) Math.floor(Math.random() * (max - min + 1) + min);
 
-        //Makes sure package does not get assigned delivery location that is already occupied
-        //Awful way to do this :(
-        for (int i = 0; i < Map.listTruck.size(); i++){
-            if (Map.listTruck.get(i).getLocationX() == temp1 || Map.listDelivery.get(i).getLocationX() == temp1 || Map.listPickup.get(i).getLocationX() == temp1){
-                temp1 = (int) Math.floor(Math.random() * (max - min + 1) + min);
-            }
-            if (Map.listTruck.get(i).getLocationY() == temp2 || Map.listDelivery.get(i).getLocationY() == temp2 || Map.listPickup.get(i).getLocationY() == temp2){
-                temp2 = (int) Math.floor(Math.random() * (max - min + 1) + min);
-            }
-            i = 0;
+        while (Map.completedMap[temp1][temp2] != "*"){
+            temp1 = (int) Math.floor(Math.random() * (max - min + 1) + min);
+            temp2 = (int) Math.floor(Math.random() * (max - min + 1) + min);
         }
-        Package pack = new Package(false, false, pickupX,pickupY, temp1, temp2);
-        packageArrayList.add(pack);
+
+        packageArrayList.add(new Package(false, false, pickupX,pickupY, temp1, temp2));
     }
 
     //Get methods
@@ -78,7 +72,7 @@ public class PickUp {
     }
 */
     public String toString(){
-        return("Pick up point at " + this.locationX + this.locationY);
+        return("Pick up point at: " +"X= "+ this.locationX +"Y= "+ this.locationY);
     }
 
 
