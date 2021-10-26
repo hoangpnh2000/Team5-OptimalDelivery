@@ -1,12 +1,7 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.JLabel;
 
 public class SeeRouteGui extends JFrame {
 
