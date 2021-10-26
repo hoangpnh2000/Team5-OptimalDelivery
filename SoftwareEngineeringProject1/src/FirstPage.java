@@ -32,7 +32,6 @@ public class FirstPage extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
                 AddTransactionPage page2 = new AddTransactionPage();
-                dispose();
             }
         });
 
@@ -43,7 +42,6 @@ public class FirstPage extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
                 JFrame window = new JFrame();
-                window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 window.setResizable(false);
                 window.setTitle("2D Adventure");
                 Panel panel = new Panel();
@@ -55,7 +53,7 @@ public class FirstPage extends JFrame {
             }
         });
 
-        seeTransactionsButton = new JButton("List of Transactions");
+        seeTransactionsButton = new JButton("See Route");
         seeTransactionsButton.setBounds(10, 155, 280, 50);
         contentPane.add(seeTransactionsButton);
 
