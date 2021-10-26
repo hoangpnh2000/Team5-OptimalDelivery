@@ -53,6 +53,10 @@ public class PickUp {
     public int getLocationY() {
         return this.locationY;
     }
+    public String getName() {
+    	return this.name;
+    }
+    
     public ArrayList<Package> getPackageArrayList(){
         return packageArrayList;
     }
