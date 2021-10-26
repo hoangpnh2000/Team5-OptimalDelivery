@@ -22,19 +22,33 @@ public class Route {
     //Then we want to split up the graph into partitions
     //generate a new graph for each partition
     //use dikjstras to find best route for delivery points
-
+    public void createFirstGraph() {
+        int numVertices = Map.listTruck.size() + Map.listPickup.size();
+        this.pickGraph = new WeightedGraph.Graph(numVertices);
+        for (int i = 0; i < Map.listTruck.size(); i++) {
+            for (int j = 0; j < Map.listPickup.size(); j++) {
+                int distX = Map.listPickup.get(j).getLocationX();
+                int distY = Map.listPickup.get(j).getLocationY();
+                double dist = Math.sqrt(Math.pow(distX - Map.listTruck.get(i).getLocationX(), 2) + Math.pow(distY - Map.listTruck.get(i).getLocationY(), 2));
+                this.pickGraph.addEdge(i, Map.listTruck.size() + j, dist);
+            }
+        }
+    }
+    public WeightedGraph.Graph dijkstraAlgo(WeightedGraph.Graph graphTemp){
+return null;
+    }
 
 
 
     //Obsolete due to createGraph in Graph class
 
 
-    public static double distance(int truckX, int truckY, int x, int y) {
+    public static String makeDirections(int truckX, int truckY, int x, int y) {
+        String routeDirections = "";
         for (int i = 0; i < Map.listDelivery.size(); i++) {
             int distX = x - truckX;
             int distY = y - truckY;
             double distance = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-            String routeDirections = "";
 
             if (distY != 0) {
                 if (distY < 0) {
@@ -56,8 +70,9 @@ public class Route {
             }
             truckX = x;
             truckY = y;
-            return distance;
         }
+        return routeDirections;
+    }
 
     //Returns the index of the shortest distance
     public static int findShortest (double [] distanceArray){
@@ -76,17 +91,33 @@ public class Route {
     }
 
     public static void main(String[] args) {
-            ArrayList<String> Directions = new List<String>();
-            for (int i = 0; i < map.listDelivery.size()+1; i++){
-                Directions.add(distance(Map.listTruck(i).getLocationX, Map.listTruck(i).getLocationY), Map.listPickup(i).PickUp.getLocationX, Map.listPickup(i)PickUp.getLocationY);
-                Directions.add(distance(Map.listTruck(i).getLocationX, Map.listTruck(i).getLocationY), Map.listPickup(i).PickUp.getLocationX, Map.listPickup(i)PickUp.getLocationY);
+        int deliverycount = 0;
+        ArrayList<String> Directions = new ArrayList<String>();
+        for (int i = 0; i < Map.listPickup.size(); i++) {
+            for (int j = 0; j < Map.listPickup.get(i).packageArrayList.size(); j++){
+                Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), Map.listPickup.get(i).getLocationX(), Map.listPickup.get(i).getLocationY()));
+                Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), Map.listPickup.get(i).getPackageArrayList(j).getDestinationX(), Map.listPickup.get(i).getPackageArrayList(j).getDestinationX());
+                deliverycount++;
             }
 
         }
-        //System.out.println(distance(0, 0, 1, 1));
     }
+        //System.out.println(distance(0, 0, 1, 1));
     public String toString(){
-        for(int i=0 ; i < )
+        for(int i = 0 ; i < this.routes.size(); i++)
+        {
+            System.out.println("Route "+ i);
+            for(int j = 0; j < this.routes.get(i).size(); j++)
+            {
+                if(j!=0)
+                {
+                    System.out.print(",");
+                }
+                System.out.print(this.routes.get(i).get(j));
+            }
+            System.out.println();
+        }
+        return("");
     }
 }
 
