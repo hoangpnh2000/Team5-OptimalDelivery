@@ -10,36 +10,38 @@ public class Panel extends JPanel implements Runnable {
 	final int scale= 3;
 
 	final int tileSize= originalTileSize*scale;//48x48 tile
-	final int maxScreenCol=16;
-	final int maxScreenRow=12;
-	final int  screenWidth= tileSize*maxScreenCol; //768 pixels
-	final int screenHeight= tileSize*maxScreenRow; //576 pixels
-	String[][] M=new String[5000][5000];
+	final int maxScreenCol;
+	final int maxScreenRow;
+	final int  screenWidth;
+	final int screenHeight;
+	private Map map;
+	String[][] M;
 	Thread runThread;
 
-	public Panel() {
+	public Panel(Map m, String[][] mat) {
+		this.map = m;
+		this.M = mat;
+
+		maxScreenRow = M[0].length;
+		maxScreenCol = M.length;
+
+		screenWidth= tileSize*maxScreenRow;
+		screenHeight= tileSize*maxScreenCol;
+
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
-		Map map= new Map();
-		M=map.generate(10,10, 2, 1, 5);
-
 	}
-
 
 	public void startRunThread() {
 		runThread = new Thread(this);
 		runThread.start();
-
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(runThread != null) {
-
 			//System.out.println("running");
-
 			//1:Update character position
 			update();
 			//2:Draw
@@ -49,14 +51,13 @@ public class Panel extends JPanel implements Runnable {
 
 	public void update() {
 	}
+
 	public void paintComponent(Graphics g) {
-
-
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
 
 		for(int i=0;i<M.length;i++) {
-			for(int j=0;j<M.length;j++) {
+			for(int j=0;j<M[0].length;j++) {
 				if(M[i][j].equals("T")) {
 					g2.setColor(Color.RED);
 					g2.fillRect(j*30,i*30,tileSize/2,tileSize/2);
@@ -70,14 +71,7 @@ public class Panel extends JPanel implements Runnable {
 			    	g2.setColor(Color.WHITE);
 					g2.fillRect(j*30,i*30,tileSize/2,tileSize/2);
 			    }
-
 			}}
 		g2.dispose();
-
-
 	}
-
-
-
-
 }

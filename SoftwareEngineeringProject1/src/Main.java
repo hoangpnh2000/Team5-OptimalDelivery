@@ -25,7 +25,7 @@ public class Main {
 		System.out.println("Map Generated");
 		map.generate(rows,columns,trucks,pickups,deliveries);
 
-        FirstPage page1 = new FirstPage(map, Map.completedMap);
+        FirstPage page1 = new FirstPage(map, map.completedMap);
         page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         System.out.println("Opening First Page");
         

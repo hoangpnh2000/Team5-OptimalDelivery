@@ -49,10 +49,8 @@ public class TransactionGui extends JFrame{
 		
 		//String sample[] = {"Pickup 1","Pickup 2","Pickup 3","Pickup 4"};
 		String pickups[] = new String[this.map.listPickup.size()];
-		System.out.println("Hello" + Map.listPickup.size());
 		for(int i=0; i<pickups.length; i++){
 			pickups[i] = map.listPickup.get(i).getName();
-			System.out.println(i+" "+pickups[i]);
 		}
 		
 		choosePickupComboBox = new JComboBox(pickups);
@@ -173,7 +171,8 @@ public class TransactionGui extends JFrame{
 				
 				try {
 					 numPackages = Integer.parseInt(numPackagesJTF.getText());
-					System.out.println("packages: "+numPackages);
+					 System.out.println("packages: "+numPackages);
+					 numPackagesJTF.setBackground(Color.white);
 					
 					/*for(int i=1; i<= numPackages; i++) {
 						//AddTransactionPage page = new AddTransactionPage(i,numPackages,pickupLocation);

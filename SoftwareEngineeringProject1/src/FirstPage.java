@@ -48,10 +48,11 @@ public class FirstPage extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
                 JFrame window = new JFrame();
-                window.setResizable(false);
-                window.setTitle("2D Adventure");
-                Panel panel = new Panel();
-                window.add(panel);
+                window.setResizable(!false);
+                window.setTitle("Map");
+                Panel panel = new Panel(map, matrix);
+                JScrollPane scrollPane = new JScrollPane(panel);
+                window.add(scrollPane);
                 window.pack();
                 window.setLocationRelativeTo(null);
                 window.setVisible(true);
