@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class Transaction1 extends JFrame{
+public class TransactionGui extends JFrame{
 
 	// Elements of UI
 	private JLabel choosePickupLabel, numPackagesLabel;
@@ -31,7 +31,7 @@ public class Transaction1 extends JFrame{
 	private Map map;
 	private String[][] matrix;
 	
-	public Transaction1(Map m, String[][] mat) {
+	public TransactionGui (Map m, String[][] mat) {
 		this.map = m;
 		this.matrix = mat;
 		this.createUI();

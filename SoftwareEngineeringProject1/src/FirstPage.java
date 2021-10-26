@@ -37,7 +37,7 @@ public class FirstPage extends JFrame {
         addTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
-                Transaction1 page2 = new Transaction1(map,matrix);
+                TransactionGui page2 = new TransactionGui(map,matrix);
             }
         });
 
