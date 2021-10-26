@@ -8,32 +8,32 @@ public class Route {
     private final ArrayList<ArrayList<String>> partitions; //arraylist of graphs using partitions
 
     public Route() {
-        this.routes = new ArrayList<ArrayList<String>>();
+        this.routes = new ArrayList<>();
         this.partitions = new ArrayList<>();
 
     }
 
     public static String makeDirections(int truckX, int truckY, int x, int y) {
-        String routeDirections = "";
+        StringBuilder routeDirections = new StringBuilder();
         for (int i = 0; i < Map.listDelivery.size() - 1; i++) {
             int distX = x - truckX;
             int distY = y - truckY;
             if (distY != 0) {
                 if (distY < 0) {
-                    routeDirections += "HEAD SOUTH " + distY + " UNITS. ";
+                    routeDirections.append("HEAD SOUTH ").append(distY).append(" UNITS. ");
                 } else {
-                    routeDirections += "HEAD NORTH " + distY + " UNITS. ";
+                    routeDirections.append("HEAD NORTH ").append(distY).append(" UNITS. ");
                 }
             }
 
             if (distX != 0) {
                 if (distY != 0) {
-                    routeDirections += "THEN, ";
+                    routeDirections.append("THEN, ");
                 }
                 if (distX < 0) {
-                    routeDirections += "HEAD WEST " + distX + " UNITS";
+                    routeDirections.append("HEAD WEST ").append(distX).append(" UNITS");
                 } else {
-                    routeDirections += "HEAD EAST " + distX + " UNITS";
+                    routeDirections.append("HEAD EAST ").append(distX).append(" UNITS");
                 }
             }
             truckX = x;
@@ -41,7 +41,7 @@ public class Route {
             x = Map.listDelivery.get(i + 1).getLocationX();
             y = Map.listDelivery.get(i + 1).getLocationY();
         }
-        return routeDirections;
+        return routeDirections.toString();
     }
 
     //Returns the index of the shortest distance
@@ -63,13 +63,13 @@ public class Route {
     //Obsolete due to createGraph in Graph class
 
     public static void main(String[] args) {
-        ArrayList<Package> packageList = new ArrayList<Package>();
+        ArrayList<Package> packageList;
         ArrayList<String> Directions = new ArrayList<String>();
         for (int i = 0; i < Map.listPickup.size(); i++) {
             packageList = Map.listPickup.get(i).getPackageArrayList();
-            for (int j = 0; j < packageList.size(); j++) {
+            for (Package aPackage : packageList) {
                 Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), Map.listPickup.get(i).getLocationX(), Map.listPickup.get(i).getLocationY()));
-                Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), packageList.get(j).getDestinationX(), packageList.get(j).getDestinationY()));
+                Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), aPackage.getDestinationX(), aPackage.getDestinationY()));
             }
         }
     }
@@ -95,8 +95,8 @@ public class Route {
 			}
 		}
 	}*/
-    public void initialBestRoute() {//finding best route for pick up and trucks
-        //initializing first pickup point for each truck (closest one to go to)
+    public void initialBestRoute() {//finding best route for pickup and trucks
+        //initializing first pickup point for each truck (the closest one to go to)
         String temp;//temporary variable to store pick up name location
         double small;//shortest distance temp variable
         int ind;//index to remove
@@ -124,8 +124,7 @@ public class Route {
     //create partitions and assign trucks
     //traverse through deliveries
     public void createPartitions() {
-        double temp = Map.listTruck.size();
-        double highestFactor = temp;
+        double highestFactor = Map.listTruck.size();
         int numHorizontalPartition;
         int numVerticalPartition;
 
@@ -140,21 +139,30 @@ public class Route {
         numHorizontalPartition = (int) highestFactor;
         numVerticalPartition = Map.listTruck.size() / numHorizontalPartition;
         double previ = 0, prevj = 0;
+        int increment = 0;
 
 
-        for (double i = 100 / numHorizontalPartition; i < 100; i = i + 100 / numHorizontalPartition) {
-            for (double j = 100 / numVerticalPartition; j < 100; j = j + 100 / numVerticalPartition) {
+        for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
+            for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
                     if (Map.listDelivery.get(k).getLocationX() > prevj && Map.listDelivery.get(k).getLocationX() < j
-					&& Map.listDelivery.get(k).getLocationY() > previ && Map.listDelivery.get(k).getLocationY() < i) {
-						
+                            && Map.listDelivery.get(k).getLocationY() > previ && Map.listDelivery.get(k).getLocationY() < i) {
+                        this.partitions.get(increment).add(Map.listDelivery.get(k).getName());
                     }
                 }
+                increment++;
+                prevj = j;
             }
+            previ = i;
+            prevj = 0;
         }
-
+    }
+    //assign trucks
+    public void assignTrucks(){
 
     }
+
+
 
     //System.out.println(distance(0, 0, 1, 1));
     public String toString() {
