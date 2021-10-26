@@ -31,7 +31,7 @@ public class FirstPage extends JFrame {
         addTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
-                AddTransactionPage page2 = new AddTransactionPage();
+                choosePickupPage page2 = new choosePickupPage();
             }
         });
 

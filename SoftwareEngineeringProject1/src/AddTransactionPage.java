@@ -6,15 +6,24 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AddTransactionPage extends JFrame{
 	
-	private JButton backButton, addButton;
-	private JLabel choosePickupText, chooseDeliveryText;
-	private JComboBox pickupDropdown, deliveryDropdownX, deliveryDropdownY;
+	// Elements of UI
+	private JButton addButton;
+	private JLabel pickupLabel, pickupLocationLabel, chooseDeliveryLabel;
+	private JTextField deliveryFieldX, deliveryFieldY;
 	
-	public AddTransactionPage() {
+	// 
+	private int packageNum, totalPackages;
+	private String pickupLocation; 
+	
+	public AddTransactionPage(int num, int total, String location) {
+		this.packageNum = num;
+		this.totalPackages = total;
+		this.pickupLocation = location;
 		this.createUI();
 	}
 	
@@ -22,50 +31,32 @@ public class AddTransactionPage extends JFrame{
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 		
-		// Go back to home page
-		backButton = new JButton("< Back");
-		backButton.setBounds(10, 10, 100, 45);
-		contentPane.add(backButton);
-		backButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent a){
-				FirstPage page1 = new FirstPage();
-				page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				dispose();
-			}
-		});
-		
 		// Choose Pickup Location for Transaction
-		choosePickupText = new JLabel("Pick Up Point");
-		choosePickupText.setHorizontalAlignment(JLabel.CENTER);
-		choosePickupText.setBounds(10, 60, 100, 40);
-		contentPane.add(choosePickupText);
+		pickupLabel = new JLabel("Pick Up Point");
+		pickupLabel.setHorizontalAlignment(JLabel.CENTER);
+		pickupLabel.setBounds(10, 60, 100, 40);
+		contentPane.add(pickupLabel);
 		
-		pickupDropdown = new JComboBox();
-		pickupDropdown.setBounds(110,60,180,40);
-		contentPane.add(pickupDropdown);
-		pickupDropdown.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				deliveryDropdownX.setEditable(true);
-				deliveryDropdownY.setEditable(true);
-			}
-		});
+		pickupLocationLabel = new JLabel(pickupLocation);
+		pickupLocationLabel.setBounds(110,60,180,40);
+		contentPane.add(pickupLocationLabel);
 		
 		// Choose X and Y coordinates for delivery location
-		chooseDeliveryText = new JLabel("Delivery Point");
-		chooseDeliveryText.setHorizontalAlignment(JLabel.CENTER);
-		chooseDeliveryText.setBounds(10, 90, 100, 40);
-		contentPane.add(chooseDeliveryText);
+		chooseDeliveryLabel = new JLabel("Delivery Point");
+		chooseDeliveryLabel.setHorizontalAlignment(JLabel.CENTER);
+		chooseDeliveryLabel.setBounds(10, 90, 100, 40);
+		contentPane.add(chooseDeliveryLabel);
 		
 		
-		deliveryDropdownX = new JComboBox();
-		deliveryDropdownX.setEditable(false);
-		deliveryDropdownX.setBounds(110,90,90,40);
-		contentPane.add(deliveryDropdownX);
+		deliveryFieldX = new JTextField("X");
+		deliveryFieldX.setHorizontalAlignment(JTextField.CENTER);
+		deliveryFieldX.setBounds(110,90,90,40);
+		contentPane.add(deliveryFieldX);
 		
-		deliveryDropdownY = new JComboBox();
-		deliveryDropdownY.setEditable(false);
-		deliveryDropdownY.setBounds(200,90,90,40);
-		contentPane.add(deliveryDropdownY);
+		deliveryFieldY = new JTextField("Y");
+		deliveryFieldY.setHorizontalAlignment(JTextField.CENTER);
+		deliveryFieldY.setBounds(200,90,90,40);
+		contentPane.add(deliveryFieldY);
 		
 		
 		addButton = new JButton("Add Transaction");
@@ -73,16 +64,12 @@ public class AddTransactionPage extends JFrame{
 		contentPane.add(addButton);
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
-				
-				
 				// Go back to home page 
-				FirstPage page1 = new FirstPage();
-				page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				dispose();
 			}
 		});
 		
-		setTitle("Add Transaction");
+		setTitle("Package " + packageNum + " out of " + totalPackages);
 		setSize(300,250);
 		setVisible(true);
 		setResizable(!false);
