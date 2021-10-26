@@ -25,7 +25,7 @@ public class PickUp {
     }
 
     public static void generatePackages(int pickupX, int pickupY){
-        int max = Map.mapX * Map.mapX - 1;
+        int max = Map.mapX * Map.mapY - 1;
         int min = 0;
         int temp1 = (int) Math.floor(Math.random() * (max - min + 1) + min);
         int temp2 = (int) Math.floor(Math.random() * (max - min + 1) + min);

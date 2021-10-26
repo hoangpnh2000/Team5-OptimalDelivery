@@ -3,19 +3,26 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 
 public class Route {
-//string of names based on the delivery, pickup and truck number
-    private ArrayList<ArrayList<String> > routes;
+
+    private ArrayList<ArrayList<String> > routes;//string of names based on the delivery, pickup and truck number
+    private ArrayList<ArrayList<WeightedGraph.Graph> > partitions; //arraylist of graphs using partitions
+    private WeightedGraph.Graph pickGraph;//graph for pickup points and trucks
+
     public Route()
     {
         this.routes =  new ArrayList<ArrayList<String> >();
+        this.partitions = new ArrayList<>();
+
     }
-    //create weighted graph of whole graph with pick up points and trucks being the nodes
-    //use dikjstras to find the best pickup point
+    //create weighted graph of whole graph with pick up points and trucks being the nodes(use maps createGraph function)
+    //use dikjstras to find the best pickup point route for trucks as whole
+    //assign quadrants based on where the truck last went to
     //we first go to each pickup point for each truck
     //access variables using the global variables
     //Then we want to split up the graph into partitions
     //generate a new graph for each partition
     //use dikjstras to find best route for delivery points
+
 
 
 
@@ -69,9 +76,17 @@ public class Route {
     }
 
     public static void main(String[] args) {
-            add.ArrayList(Distance())
+            ArrayList<String> Directions = new List<String>();
+            for (int i = 0; i < map.listDelivery.size()+1; i++){
+                Directions.add(distance(Map.listTruck(i).getLocationX, Map.listTruck(i).getLocationY), Map.listPickup(i).PickUp.getLocationX, Map.listPickup(i)PickUp.getLocationY);
+                Directions.add(distance(Map.listTruck(i).getLocationX, Map.listTruck(i).getLocationY), Map.listPickup(i).PickUp.getLocationX, Map.listPickup(i)PickUp.getLocationY);
+            }
+
         }
         //System.out.println(distance(0, 0, 1, 1));
+    }
+    public String toString(){
+        for(int i=0 ; i < )
     }
 }
 
