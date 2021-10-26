@@ -79,5 +79,13 @@ public class SeeRouteGui extends JFrame {
 		
 		lblNewLabel_3.setText("Turn Left");
 		
+		
+		
+		
+		setTitle("Route");
+		setSize(1000,600);
+		setVisible(true);
+		setResizable(!false);
+		
 	}
 }

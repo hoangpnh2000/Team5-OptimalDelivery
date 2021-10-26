@@ -56,7 +56,12 @@ public class FirstPage extends JFrame {
         seeTransactionsButton = new JButton("See Route");
         seeTransactionsButton.setBounds(10, 155, 280, 50);
         contentPane.add(seeTransactionsButton);
-
+        seeTransactionsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a) {
+                @SuppressWarnings("unused")
+                SeeRouteGui route = new SeeRouteGui();
+            }
+        });
 
         setTitle("Optimal Delivery");
         setSize(300, 250);
