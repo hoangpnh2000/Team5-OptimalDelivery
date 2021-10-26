@@ -29,7 +29,7 @@ public class Main {
         System.out.println("Opening First Page");
         
     	/*
-    	Transaction1 page=new Transaction1();
+    	TransactionGui page=new TransactionGui();
     	page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
         //panel.startRunThread();
