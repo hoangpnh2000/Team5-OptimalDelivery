@@ -31,7 +31,7 @@ public class FirstPage extends JFrame {
         addTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
-                choosePickupPage page2 = new choosePickupPage();
+                Transaction1 page2 = new Transaction1();
             }
         });
 
@@ -52,7 +52,7 @@ public class FirstPage extends JFrame {
                 //dispose();
             }
         });
-
+/*
         seeTransactionsButton = new JButton("See Route");
         seeTransactionsButton.setBounds(10, 155, 280, 50);
         contentPane.add(seeTransactionsButton);
@@ -61,7 +61,7 @@ public class FirstPage extends JFrame {
                 @SuppressWarnings("unused")
                 SeeRouteGui route = new SeeRouteGui();
             }
-        });
+        });*/
 
         setTitle("Optimal Delivery");
         setSize(300, 250);
