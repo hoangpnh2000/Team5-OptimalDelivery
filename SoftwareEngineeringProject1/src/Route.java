@@ -1,32 +1,56 @@
+import org.w3c.dom.Node;
+
+import java.util.ArrayList;
+
 public class Route {
+//string of names based on the delivery, pickup and truck number
+    private ArrayList<ArrayList<String> > routes;
+    public Route()
+    {
+        this.routes =  new ArrayList<ArrayList<String> >();
+    }
+    //create weighted graph of whole graph with pick up points and trucks being the nodes
+    //use dikjstras to find the best pickup point
+    //we first go to each pickup point for each truck
+    //access variables using the global variables
+    //Then we want to split up the graph into partitions
+    //generate a new graph for each partition
+    //use dikjstras to find best route for delivery points
+
+
+
+    //Obsolete due to createGraph in Graph class
+
 
     public static double distance(int truckX, int truckY, int x, int y) {
-        int distX = x - truckX;
-        int distY = y - truckY;
-        double distance = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-        String routeDirections = "";
+        for (int i = 0; i < Map.listDelivery.size(); i++) {
+            int distX = x - truckX;
+            int distY = y - truckY;
+            double distance = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
+            String routeDirections = "";
 
-        if (distY != 0) {
-            if (distY < 0) {
-                routeDirections += "HEAD SOUTH " + distY * (-1) + " UNITS. ";
-            } else {
-                routeDirections += "HEAD NORTH " + distY + " UNITS. ";
-            }
-        }
-
-        if (distX != 0) {
             if (distY != 0) {
-                routeDirections += "THEN, ";
+                if (distY < 0) {
+                    routeDirections += "HEAD SOUTH " + distY * (-1) + " UNITS. ";
+                } else {
+                    routeDirections += "HEAD NORTH " + distY + " UNITS. ";
+                }
             }
-            if (distX < 0) {
-                routeDirections += "HEAD WEST " + distX * (-1) + " UNITS";
-            } else {
-                routeDirections += "HEAD EAST " + distX + " UNITS";
-            }
-        }
-        return distance;
-    }
 
+            if (distX != 0) {
+                if (distY != 0) {
+                    routeDirections += "THEN, ";
+                }
+                if (distX < 0) {
+                    routeDirections += "HEAD WEST " + distX * (-1) + " UNITS";
+                } else {
+                    routeDirections += "HEAD EAST " + distX + " UNITS";
+                }
+            }
+            truckX = x;
+            truckY = y;
+            return distance;
+        }
 
     //Returns the index of the shortest distance
     public static int findShortest (double [] distanceArray){
@@ -45,7 +69,9 @@ public class Route {
     }
 
     public static void main(String[] args) {
-        System.out.println(distance(0, 0, 1, 1));
+            add.ArrayList(Distance())
+        }
+        //System.out.println(distance(0, 0, 1, 1));
     }
 }
 

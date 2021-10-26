@@ -1,19 +1,21 @@
 public class DeliveryPoint {
 
-    public boolean delivered = false;
-    public int locationX;
-    public int locationY;
-    public String deliveryPoint = "P";
+    private boolean delivered = false;
+    private int locationX;
+    private int locationY;
+    private String deliveryPoint = "P";
+    private String name;
 
 
-    public DeliveryPoint(boolean delivered, int locationX, int locationY) {
+    public DeliveryPoint(boolean delivered, int locationX, int locationY, String name) {
         this.delivered = delivered;
         this.locationX = locationX;
         this.locationY = locationY;
+        this.name = name;
     }
 
     public static void main(String[] args) {
-        DeliveryPoint pick1 = new DeliveryPoint(true, 420, 6969);
+        DeliveryPoint pick1 = new DeliveryPoint(true, 420, 6969, "Idk");
         System.out.println(pick1.delivered);
         System.out.println(pick1.deliveryPoint);
     }
@@ -40,4 +42,10 @@ public class DeliveryPoint {
     public boolean isPickedUp() {
         return this.delivered;
     }
+
+    public String toString(){
+        return("Delivery point at " + this.locationX + this.locationY);
+    }
+
+
 }

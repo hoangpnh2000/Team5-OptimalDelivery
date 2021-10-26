@@ -15,4 +15,8 @@ public class Transaction {
 
         return this.deliveryPoint;
     }
+    public void generateTransaction(){
+
+
+    }
 }

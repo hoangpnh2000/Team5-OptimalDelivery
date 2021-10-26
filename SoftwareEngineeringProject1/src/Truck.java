@@ -1,20 +1,22 @@
 public class Truck {
     //Fields
-    public int currentFuel;
-    public int fuelCapacity;
-    public int locationX;
-    public int locationY;
-    public int speed;
-    public int numPackages;
+    private int currentFuel;
+    private int fuelCapacity;
+    private int locationX;
+    private int locationY;
+    private int speed;
+    private int numPackages;
+    private String name;
 
     //Constructor
-    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed, int numPackages) {
+    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed, int numPackages, String name) {
         this.currentFuel = currentFuel;
         this.fuelCapacity = fuelCapacity;
         this.locationX = locationX;
         this.locationY = locationY;
         this.speed = speed;
         this.numPackages = numPackages;
+        this.name = "Truck 1";
     }
 
     //Get Methods
@@ -67,5 +69,9 @@ public class Truck {
         if (this.currentFuel > this.fuelCapacity) {
             this.currentFuel = this.fuelCapacity;
         }
+    }
+
+    public String toString(){
+        return("Truck at " + this.locationX + this.locationY);
     }
 }

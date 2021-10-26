@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class WeightedGraph {
-
     static class Edge {
         int src, dest;
         double distance;
@@ -18,7 +17,7 @@ public class WeightedGraph {
         int vertices;
         //Initialize adj list for all vertices
         LinkedList<Edge> [] adjacencylist;
-        public Graph(int vertices) {
+        Graph(int vertices) {
             this.vertices = vertices;
             adjacencylist = new LinkedList[vertices];
             for (int i = 0; i <vertices ; i++) {
@@ -30,20 +29,20 @@ public class WeightedGraph {
             Edge edge = new Edge(source, dest, distance);
             adjacencylist[source].addFirst(edge);
         }
-//test
+
         public void printGraph(){
             for (int i = 0; i <vertices ; i++) {
                 LinkedList<Edge> list = adjacencylist[i];
-                for (int j = 0; j <list.size() ; j++) {
-                    String temp = "Source vertex " + i;
-                    while (temp.length() < 25){
-                        temp+=" ";
+                for (Edge edge : list) {
+                    StringBuilder temp = new StringBuilder("Source vertex " + i);
+                    while (temp.length() < 25) {
+                        temp.append(" ");
                     }
-                    temp += "Destination vertex " + list.get(j).dest;
-                    while (temp.length() < 55){
-                        temp+=" ";
+                    temp.append("Destination vertex ").append(edge.dest);
+                    while (temp.length() < 55) {
+                        temp.append(" ");
                     }
-                    temp += "Distance " + list.get(j).distance;
+                    temp.append("Distance ").append(edge.distance);
                     System.out.println(temp);
                 }
             }
