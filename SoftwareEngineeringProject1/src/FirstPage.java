@@ -11,7 +11,13 @@ public class FirstPage extends JFrame {
     private JLabel welcomeText;
     private JButton addTransactionButton, seeMapButton, seeTransactionsButton;
 
-    public FirstPage() {
+    
+    private Map map;
+    private String[][] matrix;
+    
+    public FirstPage(Map m, String[][] mat) {
+    	this.map = m;
+    	this.matrix = mat;
         this.createUI();
     }
 
@@ -31,7 +37,7 @@ public class FirstPage extends JFrame {
         addTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
-                Transaction1 page2 = new Transaction1();
+                Transaction1 page2 = new Transaction1(map,matrix);
             }
         });
 

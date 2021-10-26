@@ -3,6 +3,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,11 +24,16 @@ public class Transaction1 extends JFrame{
 	private JTextField textX;
 	private JTextField textY;
 	private JTable table;
-	int numPackages;
-	String pickupLocation;
-	int k =0;
+	private int numPackages;
+	private String pickupLocation;
+	private int k =0;
 	
-	public Transaction1() {
+	private Map map;
+	private String[][] matrix;
+	
+	public Transaction1(Map m, String[][] mat) {
+		this.map = m;
+		this.matrix = mat;
 		this.createUI();
 	}
 	
@@ -41,9 +47,15 @@ public class Transaction1 extends JFrame{
 		choosePickupLabel.setBounds(10, 10, 150, 40);
 		contentPane.add(choosePickupLabel);
 		
-		String sample[] = {"Pickup 1","Pickup 2","Pickup 3","Pickup 4"};
+		//String sample[] = {"Pickup 1","Pickup 2","Pickup 3","Pickup 4"};
+		String pickups[] = new String[this.map.listPickup.size()];
+		System.out.println(map.listPickup.size());
+		for(int i=0; i<pickups.length; i++){
+			pickups[i] = map.listPickup.get(i).getName();
+			System.out.println(i+" "+pickups[i]);
+		}
 		
-		choosePickupComboBox = new JComboBox(sample);
+		choosePickupComboBox = new JComboBox(pickups);
 		choosePickupComboBox.setBounds(170, 10, 180, 40);
 		contentPane.add(choosePickupComboBox);
 		choosePickupComboBox.addActionListener(new ActionListener(){
