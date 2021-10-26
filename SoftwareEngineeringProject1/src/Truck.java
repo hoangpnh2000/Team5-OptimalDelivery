@@ -18,7 +18,7 @@ public class Truck {
         this.locationY = locationY;
         this.speed = speed;
         this.numPackages = numPackages;
-        this.name = "Truck 1";
+        this.name = name;
         this.partitionAngle1 = partitionAngle1;
         this.partitionAngle2 = partitionAngle2;
     }
@@ -51,6 +51,8 @@ public class Truck {
     public double getPartitionAngle1() {
         return this.partitionAngle1;
     }
+
+    public String getName() {return this.name;}
 
     //Set methods
     public void setCurrentFuel(int n) {

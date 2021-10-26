@@ -37,7 +37,6 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
         // The int n and String name are just arbitrary attributes
         // we've chosen for our nodes these attributes can of course
         // be whatever you need
-        int n;
         String name;
         private boolean visited;
         LinkedList<WeightedGraph> edges;
@@ -70,7 +69,7 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
         // Doesn't need to be called for any node that has an edge to another node
 // since addEdge makes sure that both nodes are in the nodes Set
         public void addNode(NodeWeighted... n) {
-            // We're using a var arg method so we don't have to call
+            // We're using a var arg method so, we don't have to call
             // addNode repeatedly
             nodes.addAll(Arrays.asList(n));
         }
@@ -130,11 +129,12 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
             return false;
         }
         // Necessary call if we want to run the algorithm multiple times
+        /*
         public void resetNodesVisited() {
             for (NodeWeighted node : nodes) {
                 node.unvisit();
             }
-        }
+        }*/
         public void DijkstraShortestPath(NodeWeighted start, NodeWeighted end) {
             // We keep track of which path gives us the shortest path for each node
             // by keeping track how we arrived at a particular node, we effectively
@@ -193,7 +193,7 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
                         }
 
                         // Since our changedAt map keeps track of child -> parent relations
-                        // in order to print the path we need to add the parent before the child and
+                        // in order to print the path we need to add the parent before the child, and
                         // it's descendants
                         path = parent.name + " " + path;
                         child = parent;
@@ -242,10 +242,19 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
         }
 
     }
+    private static double Distance (int x1,int x2,int y1,int y2){
+        double dist = 0;
+        return dist = Math.sqrt(Math.pow((x2-x1), 2)+(Math.pow((y2-y1),2)));
+    }
 
 
     public static void main(String[] args) {
         GraphWeighted graphWeighted = new GraphWeighted();
+        String name = "";
+        for (int i = 0; i < Map.listDelivery.size(); i++){
+            name += i;
+            NodeWeighted temp = new NodeWeighted(name);
+        }
         NodeWeighted zero = new NodeWeighted("0");
         NodeWeighted one = new NodeWeighted("1");
         NodeWeighted two = new NodeWeighted("2");
