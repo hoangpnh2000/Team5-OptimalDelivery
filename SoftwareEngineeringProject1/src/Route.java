@@ -93,7 +93,7 @@ public class Route {
 	public static void main(String[] args) {
 		ArrayList<Package> packageList = new ArrayList<Package>();
 		ArrayList<String> Directions = new ArrayList<String>();
-		for (int i = 1; i < Map.listPickup.size(); i++) {
+		for (int i = 0; i < Map.listPickup.size(); i++) {
 			packageList = Map.listPickup.get(i).getPackageArrayList();
 			for (int j = 0; j < packageList.size(); j++){
 				Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), Map.listPickup.get(i).getLocationX(), Map.listPickup.get(i).getLocationY()));
