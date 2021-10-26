@@ -1,12 +1,10 @@
-import org.w3c.dom.Node;
-
 import java.util.ArrayList;
 
 public class Route {
 
 	private ArrayList<ArrayList<String> > routes;//string of names based on the delivery, pickup and truck number
-	private ArrayList<ArrayList<WeightedGraph.Graph> > partitions; //arraylist of graphs using partitions
-	private WeightedGraph.Graph pickGraph;//graph for pickup points and trucks
+	private ArrayList<ArrayList<WeightedGraph> > partitions; //arraylist of graphs using partitions
+	private WeightedGraph pickGraph;//graph for pickup points and trucks
 
 	public Route()
 	{
@@ -24,17 +22,17 @@ public class Route {
 	//use dikjstras to find best route for delivery points
 	public void createFirstGraph() {
 		int numVertices = Map.listTruck.size() + Map.listPickup.size();
-		this.pickGraph = new WeightedGraph.Graph(numVertices);
+		//this.pickGraph = new WeightedGraph( , numVertices);
 		for (int i = 0; i < Map.listTruck.size(); i++) {
 			for (int j = 0; j < Map.listPickup.size(); j++) {
 				int distX = Map.listPickup.get(j).getLocationX();
 				int distY = Map.listPickup.get(j).getLocationY();
 				double dist = Math.sqrt(Math.pow(distX - Map.listTruck.get(i).getLocationX(), 2) + Math.pow(distY - Map.listTruck.get(i).getLocationY(), 2));
-				this.pickGraph.addEdge(i, Map.listTruck.size() + j, dist);
+				//this.pickGraph.addEdgeHelper(i, Map.listTruck.size() + j,(int) dist);
 			}
 		}
 	}
-	public WeightedGraph.Graph dijkstraAlgo(WeightedGraph.Graph graphTemp){
+	public WeightedGraph dijkstraAlgo(WeightedGraph graphTemp){
 		return null;
 	}
 

@@ -1,13 +1,12 @@
 import java.util.*;
-
-
 public class Map {
     //Global variables
     public static String[][] completedMap;
     public static ArrayList<Truck> listTruck;
     public static ArrayList<PickUp> listPickup;
     public static ArrayList<DeliveryPoint> listDelivery;
-    public static WeightedGraph.Graph mapGraph;
+
+    public static WeightedGraph.GraphWeighted mapGraph;
     public static int mapX;
     public static int mapY;
 
@@ -49,7 +48,7 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i);  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, 360/numTrucks* i,360/numTrucks* (i+1));  //Arbitrary values for now
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
@@ -80,35 +79,30 @@ public class Map {
         return completedMap;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Creates graphical representation of Map
     public void createGraph (int numVertices, ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
-        mapGraph = new WeightedGraph.Graph(numVertices);
+        mapGraph = new WeightedGraph.GraphWeighted();
         for (int i = 0; i < listTruck.size(); i++){
+            String truckName = "Truck " + i + 1;
+            WeightedGraph.NodeWeighted truck = new WeightedGraph.NodeWeighted(truckName);
+
             for (int j = 0; j < listPickup.size(); j++){
                 int distX = listPickup.get(j).getLocationX();
                 int distY = listPickup.get(j).getLocationY();
                 double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).getLocationX(), 2) + Math.pow(distY - listTruck.get(i).getLocationY(), 2));
-                mapGraph.addEdge(i,listTruck.size() + j, dist);
+
+                String pickupName = "Pickup " + i + 1;
+                WeightedGraph.NodeWeighted pickup = new WeightedGraph.NodeWeighted(pickupName);
+                mapGraph.addEdge(truck, pickup, dist);
             }
             for (int j = 0; j < listDelivery.size(); j++){
                 int distX = listDelivery.get(j).getLocationX();
                 int distY = listDelivery.get(j).getLocationY();
                 double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).getLocationX(), 2) + Math.pow(distY - listTruck.get(i).getLocationY(), 2));
-                mapGraph.addEdge(i,listTruck.size() + listPickup.size() + j, dist);
+
+                String deliveryName = "Delivery " + i + 1;
+                WeightedGraph.NodeWeighted delivery = new WeightedGraph.NodeWeighted(deliveryName);
+                mapGraph.addEdge(truck,delivery, dist);
             }
         }
         //Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0);  //Arbitrary values for now
