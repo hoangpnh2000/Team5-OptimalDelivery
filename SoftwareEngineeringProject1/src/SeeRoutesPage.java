@@ -49,15 +49,10 @@ public class SeeRoutesPage extends JFrame{
 		seeRouteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				routesJTA.setText("");
-				for(int i=0; i<route.routes.size(); i++) {
-					routesJTA.append("Route "+i+"\n");
-					for(int j=0; j<route.routes.get(i).size(); j++) {
-						if(j!=0) {
-							routesJTA.append(",");
-						}
-						routesJTA.append(route.routes.get(i).get(j));
-					}
-					routesJTA.append("\n");
+				
+				int index = trucksComboBox.getSelectedIndex();
+				for(int j=0; j< route.routes.get(index).size(); j++) {
+					routesJTA.append(route.routes.get(index).get(j)+"\n");
 				}
 			}
 		});
