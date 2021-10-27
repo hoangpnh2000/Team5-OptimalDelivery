@@ -17,6 +17,9 @@ public class PickUp {
         this.packageArrayList = packageArrayList;
         this.name = name;
     }
+    public PickUp(){
+
+    }
 
 
     //Set methods

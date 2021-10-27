@@ -5,7 +5,7 @@ public class Route {
     private final ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
     //private ArrayList<ArrayList<WeightedGraph> > partitions; //arraylist of graphs using partitions
     //private WeightedGraph pickGraph;//graph for pickup points and trucks
-    private final ArrayList<ArrayList<String>> partitions; //arraylist of graphs using partitions
+    private final ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
 
     public Route() {
         this.routes = new ArrayList<>();
@@ -147,7 +147,7 @@ public class Route {
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
                     if (Map.listDelivery.get(k).getLocationX() > prevj && Map.listDelivery.get(k).getLocationX() < j
                             && Map.listDelivery.get(k).getLocationY() > previ && Map.listDelivery.get(k).getLocationY() < i) {
-                        this.partitions.get(increment).add(Map.listDelivery.get(k).getName());
+                        this.partitions.get(increment).add(Map.listDelivery.get(k));
                     }
                 }
                 increment++;
@@ -156,10 +156,74 @@ public class Route {
             previ = i;
             prevj = 0;
         }
-    }
-    //assign trucks
-    public void assignTrucks(){
+        //assign trucks
+        PickUp tempPoint=new PickUp();
+        double small=0;//shortest distance temp variable
+        int ind=0;//index of shortest path to partition
+        int counter=0;
+        previ = 0;
+        prevj = 0;
+        ArrayList<ArrayList<String>> troutes = this.routes;
+        for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
+            for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
+                for (int k = 0; k < troutes.size(); k++) {
+                    for(int h = 0; h< Map.listPickup.size();h++)
+                    {
+                        if(troutes.get(k).get(troutes.get(k).size()-1).equals(Map.listPickup.get(h).getName())){
+                            tempPoint=Map.listPickup.get(h);
+                        }
+                    }
+                    if(k==0){
+                        small=distancebtwn(tempPoint.getLocationX(),tempPoint.getLocationY(),(i-previ)/2,(j-prevj)/2);
+                    }
+                    if(small>distancebtwn(tempPoint.getLocationX(),tempPoint.getLocationY(),(i-previ)/2,(j-prevj)/2))
+                    {
+                        ind=k;
+                    }
 
+                }
+                Map.listTruck.get(ind).setPartition(counter);
+                counter++;
+                troutes.remove(ind);
+                prevj=j;
+            }
+            previ=i;
+            prevj=0;
+        }
+    }
+    //private final ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
+    //private final ArrayList<ArrayList<String>> partitions; //arraylist of partitions using strings to represent 
+    //know that route coooresepond to truck and truck has the partition values assigned to it
+    //grab partition values and work with deliveries in that partition.
+    public void goToDeliveries(){
+        //initializing first pickup point for each truck (the closest one to go to)
+        String temp;//temporary variable to store pick up name location
+        double small;//shortest distance temp variable
+        int ind;//index to remove
+        ArrayList<PickUp> tempPick = Map.listPickup;//this should be deliveries 
+        for (int i = 0; i < Map.listTruck.size(); i++) {
+            while (tempPick.size() > 0) {
+                this.routes.get(i).add(Map.listTruck.get(i).getName());
+                small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(1).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(1).getLocationY(), 2));
+                temp = tempPick.get(1).getName();
+                ind = 1;
+                for (int j = 0; j < tempPick.size(); j++) {
+                    if (small > Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2))) {
+                        small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2));
+                        temp = tempPick.get(j).getName();
+                        ind = j;
+                    }
+                }
+                this.routes.get(i).add(temp);
+                tempPick.remove(ind);
+            }
+            tempPick = Map.listPickup;
+        }
+    }
+
+
+    public double distancebtwn(double x1, double y1, double x2, double y2 ){
+        return(Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)));
     }
 
 
