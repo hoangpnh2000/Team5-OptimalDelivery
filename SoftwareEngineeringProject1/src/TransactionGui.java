@@ -136,7 +136,8 @@ public class TransactionGui extends JFrame {
                             if (Map.listPickup.get(bruh).getName().contains(identifier)) {
                                 //Adds new package with corresponding origin and destination coordinates to pickup location of user's choice
                                 PickUp.packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX, Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
-                                System.out.println("We gucci");
+                                matrix[xCoordinate][yCoordinate] = "D";
+                                System.out.println("Package Added");
                                 break;
                             }
                         }
