@@ -45,7 +45,6 @@ public class Map {
             System.out.println("the size of the set is " + set.size());
             System.out.println("the size of the set is supposed to be " + (numPickup+numTrucks));
             System.out.println("This is the set prior to making graph:      " + set);
-
             //Randomizes set and casts to int array
             int[] temp = Arrays.stream(set.toArray(new Integer[0])).mapToInt(i->i).toArray();
 
