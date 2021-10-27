@@ -20,6 +20,7 @@ public class PickUp {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public PickUp(){
 
@@ -27,6 +28,8 @@ public class PickUp {
 =======
 >>>>>>> parent of 1d9b08c (Update Route)
 =======
+=======
+>>>>>>> parent of 1d9b08c (Update Route)
 =======
 >>>>>>> parent of 1d9b08c (Update Route)
 
