@@ -20,7 +20,12 @@ public class Truck {
         this.numPackages = numPackages;
         this.name = name;
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.partition = -1;
+=======
+        this.partitionAngle1 = partitionAngle1;
+        this.partitionAngle2 = partitionAngle2;
+>>>>>>> parent of 1d9b08c (Update Route)
 =======
         this.partitionAngle1 = partitionAngle1;
         this.partitionAngle2 = partitionAngle2;
@@ -77,10 +82,14 @@ public class Truck {
     public void setSpeed(int n) {
         this.speed = n;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 1d9b08c (Update Route)
     }
 
     public void setPartitionAngle1 (double angle1){
         this.partitionAngle1 = angle1;
+<<<<<<< HEAD
     }
 
     public void setPartitionAngle2 (double angle2) {
@@ -94,6 +103,12 @@ public class Truck {
 
     public void setPartitionAngle1 (double angle1){
         this.partitionAngle1 = angle1;
+    }
+
+    public void setPartitionAngle2 (double angle2) {
+        this.partitionAngle2 = angle2;
+>>>>>>> parent of 1d9b08c (Update Route)
+=======
     }
 
     public void setPartitionAngle2 (double angle2) {
