@@ -5,7 +5,7 @@ public class Route {
     private final ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
     //private ArrayList<ArrayList<WeightedGraph> > partitions; //arraylist of graphs using partitions
     //private WeightedGraph pickGraph;//graph for pickup points and trucks
-    private final ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
+    private final ArrayList<ArrayList<String>> partitions; //arraylist of graphs using partitions
 
     public Route() {
         this.routes = new ArrayList<>();
@@ -149,7 +149,7 @@ public class Route {
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
                     if (Map.listDelivery.get(k).getLocationX() > prevj && Map.listDelivery.get(k).getLocationX() < j
                             && Map.listDelivery.get(k).getLocationY() > previ && Map.listDelivery.get(k).getLocationY() < i) {
-                        this.partitions.get(increment).add(Map.listDelivery.get(k));
+                        this.partitions.get(increment).add(Map.listDelivery.get(k).getName());
                     }
                 }
                 increment++;
@@ -226,7 +226,9 @@ public class Route {
     public double distancebtwn(double x1, double y1, double x2, double y2) {
         return (Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
     }
-
+    //assign trucks
+    public void assignTrucks() {
+    }
 
     //System.out.println(distance(0, 0, 1, 1));
     public String toString() {

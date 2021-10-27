@@ -17,10 +17,10 @@ public class PickUp {
         this.packageArrayList = packageArrayList;
         this.name = name;
     }
+
     public PickUp(){
 
     }
-
 
     //Set methods
     public void setLocation(int x, int y) {

@@ -50,7 +50,7 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, -1);  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, 360/numTrucks* i,360/numTrucks*(i+1));  //Arbitrary values for now
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
