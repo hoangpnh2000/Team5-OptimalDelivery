@@ -26,35 +26,48 @@ public class HelpPage extends JFrame {
         titleJLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(titleJLabel);
         
-        String helpText = "OptimalDelivery is a logistics company that wants to move shipments from \n"
-        		+ "Producer to Consumer in a distance-optimal manner. They have a fleet of "+map.listTruck.size()+"\n"
-        		+ "trucks to pick up from "+map.listPickup.size()+" (predetermined) pickup points, and deliver to "+map.listDelivery.size()+" \n"
-        		+ "receiving points. This program is to calculate the best way for the Trucks to \n"
-        		+ "fulfill orders in order to minimize on fuel costs. \n"
+        String helpText = "OptimalDelivery is a logistics company that wants to move shipments from Producer to Consumer in a distance-optimal manner. They have a fleet of \n"
+        		+ "5 trucks to pick up from 5 (predetermined) pickup points, and deliver to \n"
+        		+ "0 receiving points. This program is to calculate the best way for the Trucks to fulfill orders in order to minimize on fuel costs. \n"
+        		+ "\n"
         		+ "\n"
         		+ "Map:\n"
         		+ "\n"
         		+ "Click on the \"Map\" Button to visualize the area in which OptimalDelivery \n"
-        		+ "operates. Trucks are marked by RED Tiles, Pickup Points are marked by BLUE \n"
-        		+ "Tiles, and Delivery Points are marked by GREEN Tiles. \n"
+        		+ "operates. Trucks are marked by RED Tiles, Pickup Points are marked by \n"
+        		+ "BLUE Tiles, and Delivery Points are marked by GREEN Tiles. \n"
         		+ "\n"
         		+ "\n"
         		+ "Adding Transactions:\n"
         		+ "\n"
-        		+ "To add the orders for today, our user (i.e. a manager or administrator) would \n"
-        		+ "click the \"Add Transactions\" button. \n"
+        		+ "To add the orders for today, our user (i.e. a manager or administrator) \n"
+        		+ "would click the \"Add Transaction\" button. \n"
         		+ "\n"
-        		+ "First, choose the Pickup Point from where you will deliver the package(s). Once\n "
-        		+ "you do that, enter the amount of packages coming from that pickup point. \n\n"
+        		+ "First, choose the Pickup Point from where you will deliver the package(s). \n"
+        		+ "Once you do that, enter the amount of packages coming from that pickup \n"
+        		+ "point. \n"
+        		+ "\n"
         		+ "After that, enter the x and y coordinates for each of the packages and click \n"
-        		+ "\"Update\". You will then see the details for each of the transactions you just \n"
-        		+ "added on the table to the right. ";
+        		+ "\"Add Package\". You will then see the details for each of the transactions \n"
+        		+ "you just added on the table to the right.\n"
+        		+ "\n"
+        		+ "Finally click 'Go Back to Home' to return to the home page.\n"
+        		+ "\n"
+        		+ "\n"
+        		+ "Starting the Route:\n"
+        		+ "\n"
+        		+ "Once Transactions have been added to the system, you can start the day's \n"
+        		+ "route by clicking the \"Start Route\" button on the home page. In that page, \n"
+        		+ "you can see the points that each trucks travels in its route by selecting the \n"
+        		+ "truck whose route you want to see, and subsequently clicking \"See Route\". \n"
+        		+ "";
 
         infoJTA = new JTextArea(helpText);
-        infoJTA.setBounds(5,60,500,440);
         infoJTA.setLineWrap(true);
-        infoJTA.setEditable(false);
-        contentPane.add(infoJTA);
+        infoJTA.setEditable(!false);
+        JScrollPane scroll = new JScrollPane(infoJTA);
+        scroll.setBounds(5,60,500,440);
+        contentPane.add(scroll);
 
         setTitle("Help");
         setSize(510,500);
