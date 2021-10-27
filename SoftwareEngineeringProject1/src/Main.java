@@ -23,7 +23,7 @@ public class Main {
     	
     	map = new Map();
 		System.out.println("Map Generated");
-		map.generate(rows,columns,trucks,pickups,deliveries);
+		map.generate(rows,columns,trucks,pickups);
 
         FirstPage page1 = new FirstPage(map, map.completedMap);
         page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

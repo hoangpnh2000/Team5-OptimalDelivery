@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,8 +25,10 @@ public class TransactionGui extends JFrame {
 	private JTextField textY;
 	private JTable table;
 	private int numPackages;
-	private String pickupLocation;
+	public String pickupLocation;
 	private int k = 0;
+	public int xCoordinate;
+	public int yCoordinate;
 
 	private Map map;
 	private String[][] matrix;
@@ -128,9 +131,27 @@ public class TransactionGui extends JFrame {
 				// lblPackageNum.setText(Integer.toString(i-k));
 				
 				try {
-					int xCoordinate = Integer.parseInt(textX.getText());
-					int yCoordinate = Integer.parseInt(textY.getText());
-					
+					xCoordinate = Integer.parseInt(textX.getText());
+					yCoordinate = Integer.parseInt(textY.getText());
+
+					//public String pickupLocation;
+					//Removes all the non-numerical charcters in string to match with the cooresponding pickup location
+					String identifier = pickupLocation.substring(pickupLocation.length()-1);
+					identifier = identifier.replaceAll("[^\\d.]", "");
+
+			//use the string of the pickup location and the x and y coordinates to add a new package to the packagearraylist of the correct pickup object
+					//public static ArrayList<Package> packageArrayList = new ArrayList<Package>();
+					for (int bruh = 0; bruh < Map.listPickup.size(); bruh++){
+						if (Map.listPickup.get(bruh).getName().contains(identifier)){
+							//Adds new package with corresponding origin and destination coordinates to pickup location of user's choice
+							Map.listPickup.get(bruh).packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX, Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
+							System.out.println("We gucci");
+							break;
+						}
+					}
+
+
+
 					textX.setBackground(Color.white);
 					textY.setBackground(Color.white);
 					
