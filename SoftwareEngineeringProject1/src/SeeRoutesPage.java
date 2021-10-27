@@ -40,11 +40,11 @@ public class SeeRoutesPage extends JFrame{
 		}
 		
 		trucksComboBox = new JComboBox(trucks);
-		trucksComboBox.setBounds(90,10,300,40);
+		trucksComboBox.setBounds(90,10,280,40);
 		contentPane.add(trucksComboBox);
 		
 		seeRouteButton = new JButton("See Route");
-		seeRouteButton.setBounds(400,10,90,40);
+		seeRouteButton.setBounds(380,10,100,40);
 		contentPane.add(seeRouteButton);
 		seeRouteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +73,7 @@ public class SeeRoutesPage extends JFrame{
 		
 		setTitle("Routes");
 		setSize(500,500);
-		setResizable(true);
+		setResizable(false);
 		setVisible(true);
 	}
 	

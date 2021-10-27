@@ -10,8 +10,8 @@ public class Main {
 
     	// Generate map once Program Starts
     	Random rand = new Random();
-    	int rows = rand.nextInt(50) + 1;
-    	int columns = rand.nextInt(50) + 1;
+    	int rows = rand.nextInt(10) + 4;
+    	int columns = rand.nextInt(10) + 4;
     	int size = rows * columns;
     	int limit = size/3;
     	int trucks = rand.nextInt(limit) + 1;
@@ -28,7 +28,7 @@ public class Main {
         FirstPage page1 = new FirstPage(map, map.completedMap);
         page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         System.out.println("Opening First Page");
-        
+
     	/*
     	TransactionGui page=new TransactionGui();
     	page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/

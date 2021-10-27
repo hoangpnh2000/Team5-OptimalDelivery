@@ -61,13 +61,15 @@ public class FirstPage extends JFrame {
             }
         });
 
-        routesButton = new JButton("Routes");
+        routesButton = new JButton("Start Routes");
         routesButton.setBounds(10, 155, 280, 50);
         contentPane.add(routesButton);
         routesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
             	System.out.println("Opening Routes Page");
                 SeeRoutesPage page3 = new SeeRoutesPage(map,matrix);
+                addTransactionButton.setEnabled(false);
+                routesButton.setEnabled(false);
             }
         });
         
