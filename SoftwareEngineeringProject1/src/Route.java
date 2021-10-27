@@ -8,8 +8,8 @@ public class Route {
     public ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
 
     public Route() {
-        routes = new ArrayList<>();
-        this.partitions = new ArrayList<>();
+        this.routes = new ArrayList<ArrayList<String>>();
+        this.partitions = new ArrayList<ArrayList<DeliveryPoint>>();
 
     }
 
@@ -112,15 +112,17 @@ public class Route {
         int ind;//index to remove
         ArrayList<PickUp> tempPick = Map.listPickup;
         for (int i = 0; i < Map.listTruck.size(); i++) {
+            routes.add(new ArrayList<String>());
+            routes.get(i).add(Map.listTruck.get(i).getName());
             while (tempPick.size() > 0) {
-                routes.add(new ArrayList<String>());
-                routes.get(i).add(Map.listTruck.get(i).getName());
                 small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(0).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(0).getLocationY(), 2));
                 temp = tempPick.get(0).getName();
                 ind = 0;
                 for (int j = 0; j < tempPick.size(); j++) {
-                    if (small > Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2))) {
-                        small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2));
+                    if (small > Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) +
+                            Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2))) {
+                        small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) +
+                                Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2));
                         temp = tempPick.get(j).getName();
                         ind = j;
                     }
