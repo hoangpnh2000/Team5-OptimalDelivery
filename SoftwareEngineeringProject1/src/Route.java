@@ -54,7 +54,7 @@ public class Route {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index OOB");
+            //System.out.println("Index OOB");
         }
         return (int) temp;
     }
@@ -171,7 +171,7 @@ public class Route {
         double small;//shortest distance temp variable
         int ind;//index to remove
         ArrayList<PickUp> tempPick = new ArrayList<PickUp>();
-        System.out.println("Truck size:"+ Map.listTruck.size());
+        //System.out.println("Truck size:"+ Map.listTruck.size());
         for (int w = 0; w < Map.listPickup.size(); w++) {
             tempPick.add(Map.listPickup.get(w));
         }
@@ -198,7 +198,7 @@ public class Route {
                 tempPick.add(Map.listPickup.get(w));
             }
         }
-        System.out.println("Hello: " + routes.toString() + Map.listDelivery.size()+ "Truck size:"+ Map.listTruck.size());
+        //System.out.println("Hello: " + routes.toString() + Map.listDelivery.size()+ "Truck size:"+ Map.listTruck.size());
         createPartitions();
     }
 
@@ -257,14 +257,14 @@ public class Route {
         }
 //print partitions
         for (int i = 0; i < partitions.size(); i++) {
-            System.out.println("Partition " + i);
+            //System.out.println("Partition " + i);
             for (int j = 0; j < partitions.get(i).size(); j++) {
                 if (j != 0) {
-                    System.out.print(",");
+                    //System.out.print(",");
                 }
-                System.out.print(partitions.get(i).get(j).getName());
+                //System.out.print(partitions.get(i).get(j).getName());
             }
-            System.out.println();
+            //System.out.println();
         }
         //print partitions
         //assign trucks to partitions
@@ -297,7 +297,7 @@ public class Route {
                 troutes.get(o).add(routes.get(o).get(u));
             }
         }
-        System.out.println(troutes);
+        //System.out.println(troutes);
         double i = (double) 10 / numHorizontalPartition;
         double j = (double) 10 / numVerticalPartition;
         //copying routes to troutes
@@ -342,10 +342,10 @@ public class Route {
             i = i + (double) 10 / numHorizontalPartition;
         }
         //print out all trucks with cooresponding partitions
-        System.out.println();
+        //System.out.println();
         for(int f = 0; f<Map.listTruck.size();f++)
         {
-            System.out.println(Map.listTruck.get(f).getName()+" has partitions "+Map.listTruck.get(f).getPartition());
+            //System.out.println(Map.listTruck.get(f).getName()+" has partitions "+Map.listTruck.get(f).getPartition());
         }
         //print out all trucks with cooresponding partitions
         goToDeliveries();
@@ -386,20 +386,20 @@ public class Route {
 
             }
         }
-        System.out.println(routes);
+        //System.out.println(routes);
     }
 
     //System.out.println(distance(0, 0, 1, 1));
     public String toString() {
         for (int i = 0; i < routes.size(); i++) {
-            System.out.println("Route " + i);
+            //System.out.println("Route " + i);
             for (int j = 0; j < routes.get(i).size(); j++) {
                 if (j != 0) {
-                    System.out.print(",");
+                    //System.out.print(",");
                 }
-                System.out.print(routes.get(i).get(j));
+                //System.out.print(routes.get(i).get(j));
             }
-            System.out.println();
+            //System.out.println();
         }
         return ("");
     }

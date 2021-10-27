@@ -33,8 +33,8 @@ public class Map {
             //Set will be unsorted
             Set<Integer> set = new HashSet<>();
             //Generates random number within range, cast to int
-            System.out.println("numTrucks is of size " + numTrucks);
-            System.out.println("numPickup is of size " + numPickup);
+            //System.out.println("numTrucks is of size " + numTrucks);
+            //System.out.println("numPickup is of size " + numPickup);
             int max = rows * columns - 1;
             int min = 0;
             while (set.size() != (numTrucks + numPickup)){
@@ -42,9 +42,9 @@ public class Map {
                 set.add(temp);
             }
             //Convert set to List for easier manipulation
-            System.out.println("the size of the set is " + set.size());
-            System.out.println("the size of the set is supposed to be " + (numPickup+numTrucks));
-            System.out.println("This is the set prior to making graph:      " + set);
+            //System.out.println("the size of the set is " + set.size());
+            //System.out.println("the size of the set is supposed to be " + (numPickup+numTrucks));
+            //System.out.println("This is the set prior to making graph:      " + set);
             //Randomizes set and casts to int array
             int[] temp = Arrays.stream(set.toArray(new Integer[0])).mapToInt(i->i).toArray();
 
@@ -78,19 +78,19 @@ public class Map {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Something went wrong. \nCheck for invalid inputs.");
+            //System.out.println("Something went wrong. \nCheck for invalid inputs.");
         }
 
 
-        System.out.println("There are supposed to be " + stupid);
-        System.out.println("There are actually " + listTruck.size());
+        //System.out.println("There are supposed to be " + stupid);
+        //System.out.println("There are actually " + listTruck.size());
         /*
         //Print for debugging
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                System.out.print(completedMap[i][j] + " ");
+                //System.out.print(completedMap[i][j] + " ");
             }
-            System.out.println();
+            //System.out.println();
         }
         */
         return completedMap;

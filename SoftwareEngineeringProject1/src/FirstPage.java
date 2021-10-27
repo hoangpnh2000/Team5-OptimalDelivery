@@ -48,7 +48,7 @@ public class FirstPage extends JFrame {
         contentPane.add(seeMapButton);
         seeMapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
-            	System.out.println("Opening Map");
+            	//System.out.println("Opening Map");
                 @SuppressWarnings("unused")
                 JFrame window = new JFrame();
                 window.setResizable(!false);
@@ -68,7 +68,7 @@ public class FirstPage extends JFrame {
         contentPane.add(routesButton);
         routesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
-            	System.out.println("Opening Routes Page");
+            	//System.out.println("Opening Routes Page");
                 SeeRoutesPage page3 = new SeeRoutesPage(map,matrix);
                 addTransactionButton.setEnabled(false);
                 routesButton.setEnabled(false);
@@ -81,7 +81,7 @@ public class FirstPage extends JFrame {
         contentPane.add(helpButton);
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
-            	System.out.println("Opening Help Page");
+            	//System.out.println("Opening Help Page");
                 HelpPage page4 = new HelpPage(map,matrix);
             }
         });

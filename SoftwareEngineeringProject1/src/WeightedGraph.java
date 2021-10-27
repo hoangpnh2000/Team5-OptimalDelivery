@@ -106,15 +106,15 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
                 LinkedList<WeightedGraph> edges = node.edges;
 
                 if (edges.isEmpty()) {
-                    System.out.println("Node " + node.name + " has no edges.");
+                    //System.out.println("Node " + node.name + " has no edges.");
                     continue;
                 }
-                System.out.print("Node " + node.name + " has edges to: ");
+                //System.out.print("Node " + node.name + " has edges to: ");
 
                 for (WeightedGraph edge : edges) {
-                    System.out.print(edge.destination.name + "(" + edge.weight + ") ");
+                    //System.out.print(edge.destination.name + "(" + edge.weight + ") ");
                 }
-                System.out.println();
+                //System.out.println();
             }
         }
         public boolean hasEdge(NodeWeighted source, NodeWeighted destination) {
@@ -171,14 +171,14 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
                 // reachable node the path between start and end doesn't exist
                 // (they aren't connected)
                 if (currentNode == null) {
-                    System.out.println("There isn't a path between " + start.name + " and " + end.name);
+                    //System.out.println("There isn't a path between " + start.name + " and " + end.name);
                     return;
                 }
 
                 // If the closest non-visited node is our destination, we want to print the path
                 if (currentNode == end) {
-                    System.out.println("The path with the smallest weight between "
-                            + start.name + " and " + end.name + " is:");
+                    //System.out.println("The path with the smallest weight between "
+                    //        + start.name + " and " + end.name + " is:");
 
                     NodeWeighted child = end;
 
@@ -198,8 +198,8 @@ public class WeightedGraph implements Comparable<WeightedGraph> {
                         path = parent.name + " " + path;
                         child = parent;
                     }
-                    System.out.println(path);
-                    System.out.println("The path costs: " + shortestPathMap.get(end));
+                    //System.out.println(path);
+                    //System.out.println("The path costs: " + shortestPathMap.get(end));
                     return;
                 }
                 currentNode.visit();

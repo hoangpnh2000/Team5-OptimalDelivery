@@ -16,8 +16,8 @@ public class DeliveryPoint {
 
     public static void main(String[] args) {
         DeliveryPoint pick1 = new DeliveryPoint(true, 420, 6969, "Idk");
-        System.out.println(pick1.delivered);
-        System.out.println(pick1.deliveryPoint);
+        //System.out.println(pick1.delivered);
+        //System.out.println(pick1.deliveryPoint);
     }
 
     //Set methods

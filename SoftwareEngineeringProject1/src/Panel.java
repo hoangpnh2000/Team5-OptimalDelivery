@@ -65,7 +65,7 @@ public class Panel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-		System.out.println("SIZE OF LISTDELIVERY IS " + Map.listDelivery.size());
+		//System.out.println("SIZE OF LISTDELIVERY IS " + Map.listDelivery.size());
         for (int i = 0; i < M.length; i++) {
             for (int j = 0; j < M[0].length; j++) {
                 if (M[i][j].equals("T")) {

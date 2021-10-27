@@ -17,17 +17,17 @@ public class Main {
 		int limit = size/10;
     	int pickups = rand.nextInt(limit) + 1;
 		int trucks = rand.nextInt(limit) + 1;
-    	
-    	System.out.println(xMapSize+" by "+yMapSize+" Map with "+trucks+" trucks and "
-    			+pickups+" pick up points.");
+
+		//System.out.println(xMapSize+" by "+yMapSize+" Map with "+trucks+" trucks and "
+		//		+pickups+" pick up points.");
     	
     	map = new Map();
-		System.out.println("Map Generated");
+		//System.out.println("Map Generated");
 		map.generate(xMapSize,yMapSize,trucks,pickups);
 
         FirstPage page1 = new FirstPage(map, map.completedMap);
         page1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        System.out.println("Opening First Page");
+		//System.out.println("Opening First Page");
 
     	/*
     	TransactionGui page=new TransactionGui();

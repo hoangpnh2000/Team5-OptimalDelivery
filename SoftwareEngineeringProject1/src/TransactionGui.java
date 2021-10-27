@@ -137,7 +137,7 @@ public class TransactionGui extends JFrame {
                                 //Adds new package with corresponding origin and destination coordinates to pickup location of user's choice
                                 PickUp.packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX, Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
                                 matrix[xCoordinate][yCoordinate] = "D";
-                                System.out.println("Package Added");
+                                //System.out.println("Package Added");
                                 String name = "Delivery " + (Map.listDelivery.size() + 1);
                                 DeliveryPoint delivery = new DeliveryPoint(false, xCoordinate, yCoordinate, name);
                                 Map.listDelivery.add(delivery);
@@ -170,7 +170,7 @@ public class TransactionGui extends JFrame {
                             k = 0;
                         }
                     } else {
-                        System.out.println("ERROR: Point already occupied");
+                        //System.out.println("ERROR: Point already occupied");
                         JOptionPane.showMessageDialog(null, "Point already occupied.", "ERROR",
                                 JOptionPane.ERROR_MESSAGE);
                     }
@@ -178,7 +178,7 @@ public class TransactionGui extends JFrame {
                 } catch (Exception ecp) {
                     textX.setBackground(errorColor);
                     textY.setBackground(errorColor);
-                    System.out.println("ERROR: Must enter valid coordinates.");
+                    //System.out.println("ERROR: Must enter valid coordinates.");
                     JOptionPane.showMessageDialog(null, "Must enter valid coordinates.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -195,11 +195,11 @@ public class TransactionGui extends JFrame {
         continueButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 pickupLocation = (String) choosePickupComboBox.getSelectedItem();
-                System.out.println("Pick Up Location: " + pickupLocation);
+                //System.out.println("Pick Up Location: " + pickupLocation);
 
                 try {
                     numPackages = Integer.parseInt(numPackagesJTF.getText());
-                    System.out.println("packages: " + numPackages);
+                    //System.out.println("packages: " + numPackages);
                     numPackagesJTF.setBackground(Color.white);
 
                     lblPickupPoint.setText(pickupLocation);
@@ -217,7 +217,7 @@ public class TransactionGui extends JFrame {
 
                 } catch (Exception ecp) {
                     numPackagesJTF.setBackground(errorColor);
-                    System.out.println("ERROR: Must enter number in 'Number of Packages' field.");
+                    //System.out.println("ERROR: Must enter number in 'Number of Packages' field.");
                     JOptionPane.showMessageDialog(null, "Must enter number in 'Number of Packages' field.", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 }

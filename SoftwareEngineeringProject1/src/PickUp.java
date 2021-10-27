@@ -58,7 +58,7 @@ public class PickUp {
     }
     public void printPackages(){
         for (int i = 0; i < numPackages; i++){
-            System.out.print(packageArrayList.get(i).toString());
+            //System.out.print(packageArrayList.get(i).toString());
         }
     }
 
