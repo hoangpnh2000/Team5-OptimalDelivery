@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SeeRoutesPage extends JFrame{
 
@@ -12,10 +14,15 @@ public class SeeRoutesPage extends JFrame{
 	
 	private Map map;
 	private String[][] matrix;
+	private Route route;
 	
 	public SeeRoutesPage(Map m, String[][] mat) {
 		this.map = m;
 		this.matrix = mat;
+		
+		route = new Route();
+		route.initialBestRoute();
+		
 		createUI();
 	}
 	
@@ -27,15 +34,36 @@ public class SeeRoutesPage extends JFrame{
 		pickTruckLabel.setBounds(10,10,75,40);
 		contentPane.add(pickTruckLabel);
 		
-		trucksComboBox = new JComboBox();
+		String trucks[] = new String[this.map.listTruck.size()];
+		for(int i=0; i<trucks.length; i++) {
+			trucks[i] = map.listTruck.get(i).getName();
+		}
+		
+		trucksComboBox = new JComboBox(trucks);
 		trucksComboBox.setBounds(90,10,300,40);
 		contentPane.add(trucksComboBox);
 		
 		seeRouteButton = new JButton("See Route");
 		seeRouteButton.setBounds(400,10,90,40);
 		contentPane.add(seeRouteButton);
+		seeRouteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				routesJTA.setText("");
+				for(int i=0; i<route.routes.size(); i++) {
+					routesJTA.append("Route "+i+"\n");
+					for(int j=0; j<route.routes.get(i).size(); j++) {
+						if(j!=0) {
+							routesJTA.append(",");
+						}
+						routesJTA.append(route.routes.get(i).get(j));
+					}
+					routesJTA.append("\n");
+				}
+			}
+		});
 		
 		routesJTA = new JTextArea();
+		routesJTA.setEditable(false);
 		BevelBorder b = new BevelBorder(BevelBorder.LOWERED);
 		routesJTA.setBorder(b);
 		JScrollPane routesScrollPane = new JScrollPane(routesJTA);

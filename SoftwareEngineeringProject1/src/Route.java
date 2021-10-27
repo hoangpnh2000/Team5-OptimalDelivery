@@ -74,8 +74,8 @@ public class Route {
         }
 
 
-        Route jokerdotmp4= new Route();
-        jokerdotmp4.initialBestRoute();
+        //Route jokerdotmp4= new Route();
+        //jokerdotmp4.initialBestRoute();
 
 
     }
@@ -113,10 +113,11 @@ public class Route {
         ArrayList<PickUp> tempPick = Map.listPickup;
         for (int i = 0; i < Map.listTruck.size(); i++) {
             while (tempPick.size() > 0) {
+            	this.routes.add(new ArrayList<String>());
                 this.routes.get(i).add(Map.listTruck.get(i).getName());
-                small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(1).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(1).getLocationY(), 2));
-                temp = tempPick.get(1).getName();
-                ind = 1;
+                small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(0).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(0).getLocationY(), 2));
+                temp = tempPick.get(0).getName();
+                ind = 0;
                 for (int j = 0; j < tempPick.size(); j++) {
                     if (small > Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2))) {
                         small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(j).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(j).getLocationY(), 2));
@@ -225,8 +226,8 @@ public class Route {
                         tempPoint = Map.listPickup.get(h);
                     }
                 }
-                small = Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(1).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(1).getLocationY(), 2));
-                temp = tempDel.get(1).getName();
+                small = Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(0).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(0).getLocationY(), 2));
+                temp = tempDel.get(0).getName();
                 ind = 1;
                 for (int j = 0; j < tempDel.size(); j++) {
                     if (small > Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(j).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(j).getLocationY(), 2))) {
