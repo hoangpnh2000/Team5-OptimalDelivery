@@ -8,7 +8,7 @@ public class Route {
     public ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
 
     public Route() {
-        this.routes = new ArrayList<ArrayList<String>>();
+        routes = new ArrayList<ArrayList<String>>();
         this.partitions = new ArrayList<ArrayList<DeliveryPoint>>();
 
     }
@@ -110,7 +110,10 @@ public class Route {
         String temp;//temporary variable to store pick up name location
         double small;//shortest distance temp variable
         int ind;//index to remove
-        ArrayList<PickUp> tempPick = Map.listPickup;
+        ArrayList<PickUp> tempPick = new ArrayList<PickUp>();
+        for (int w = 0; w < Map.listPickup.size(); w++) {
+            tempPick.add(Map.listPickup.get(w));
+        }
         for (int i = 0; i < Map.listTruck.size(); i++) {
             routes.add(new ArrayList<String>());
             routes.get(i).add(Map.listTruck.get(i).getName());
@@ -130,8 +133,11 @@ public class Route {
                 routes.get(i).add(temp);
                 tempPick.remove(ind);
             }
-            tempPick = Map.listPickup;
+            for (int w = 0; w < Map.listPickup.size(); w++) {
+                tempPick.add(Map.listPickup.get(w));
+            }
         }
+        System.out.println("Hello: " + routes.toString() + Map.listPickup.size());
         createPartitions();
     }
 
@@ -177,7 +183,7 @@ public class Route {
         }
 
         //assign trucks to partitions
-        for (int y = 0; y<Map.listTruck.size();y++){
+        for (int y = 0; y < Map.listTruck.size(); y++) {
             Map.listTruck.get(y).setPartition(y);
         }
 /*
@@ -226,10 +232,10 @@ public class Route {
     //grab partition values and work with deliveries in that partition.
     public void goToDeliveries() {
         //initializing first pickup point for each truck (the closest one to go to)
-        ArrayList<DeliveryPoint> tempDel;
+        ArrayList<DeliveryPoint> tempDel = new ArrayList<DeliveryPoint>();
         PickUp tempPoint = new PickUp();
         String temp;    //temporary variable to store pick up name location
-        double small;   //shortest distance temp variable
+        double small;//shortest distance temp variable
         int ind;//index to remove
         for (int p = 0; p < Map.listTruck.size(); p++) {
             tempDel = this.partitions.get(Map.listTruck.get(p).getPartition());  //tempDel is the arraylist of delivery points
