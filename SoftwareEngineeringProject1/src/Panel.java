@@ -54,7 +54,7 @@ public class Panel extends JPanel implements Runnable {
 			  for (int j = 0; j< Map.listPickup.get(i).getPackageArrayList().size(); j++){
 			    int xcoord = Map.listPickup.get(i).getPackageArrayList().get(j).destinationX;
 			    int ycoord = Map.listPickup.get(i).getPackageArrayList().get(j).destinationY;
-			    System.out.println(xcoord+" "+ycoord);
+			    M[xcoord][ycoord] = "D";
 			  }
 			}
 	}
