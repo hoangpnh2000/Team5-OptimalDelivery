@@ -152,8 +152,7 @@ public class Map {
                 int distX = deliveryPoint.getLocationX();
                 int distY = deliveryPoint.getLocationY();
                 double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).getLocationX(), 2) + Math.pow(distY - listTruck.get(i).getLocationY(), 2));
-
-                String deliveryName = "Delivery " + i + 1;
+                String deliveryName = "Delivery " + i;
                 WeightedGraph.NodeWeighted delivery = new WeightedGraph.NodeWeighted(deliveryName);
                 mapGraph.addEdge(truck, delivery, dist);
             }

@@ -138,6 +138,9 @@ public class TransactionGui extends JFrame {
                                 PickUp.packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX, Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
                                 matrix[xCoordinate][yCoordinate] = "D";
                                 System.out.println("Package Added");
+                                String name = "Delivery " + (Map.listDelivery.size() + 1);
+                                DeliveryPoint delivery = new DeliveryPoint(false, xCoordinate, yCoordinate, name);
+                                Map.listDelivery.add(delivery);
                                 break;
                             }
                         }
