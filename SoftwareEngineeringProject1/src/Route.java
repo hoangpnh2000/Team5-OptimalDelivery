@@ -63,6 +63,7 @@ public class Route {
     //Obsolete due to createGraph in Graph class
 
     public static void main(String[] args) {
+        /*
         ArrayList<Package> packageList;
         ArrayList<String> Directions = new ArrayList<>();
         for (int i = 0; i < Map.listPickup.size(); i++) {
@@ -72,11 +73,45 @@ public class Route {
                 Directions.add(makeDirections(Map.listTruck.get(i).getLocationX(), Map.listTruck.get(i).getLocationY(), aPackage.getDestinationX(), aPackage.getDestinationY()));
             }
         }
-
+*/
 
         //Route jokerdotmp4= new Route();
         //jokerdotmp4.initialBestRoute();
+       /* Map.listTruck = new ArrayList<>();
+        Map.listPickup = new ArrayList<>();
+        Map.listDelivery = new ArrayList<>();
 
+
+        Truck temp1 = new Truck(0,5,20,10,0,0,"Truck1",-1);
+        DeliveryPoint temp2 = new DeliveryPoint(false,6,5,"Delivery Point 1");
+        PickUp temp3 = new PickUp(10, 11, 0, "Pickup Point 1");
+        Map.listTruck.add(temp1);
+        Map.listPickup.add(temp3);
+        Map.listDelivery.add(temp2);
+
+        temp1 = new Truck(0,5,59,60,0,0,"Truck2",-1);
+        temp2 = new DeliveryPoint(false,69,69,"Delivery Point 2");
+        temp3 = new PickUp(10, 99, 0, "Pickup Point 2");
+        Map.listTruck.add(temp1);
+        Map.listPickup.add(temp3);
+        Map.listDelivery.add(temp2);
+
+        temp1 = new Truck(0,5,59,10,0,0,"Truck3",-1);
+        temp2 = new DeliveryPoint(false,69,30,"Delivery Point 3");
+        temp3 = new PickUp(54, 99, 0, "Pickup Point 3");
+        Map.listTruck.add(temp1);
+        Map.listPickup.add(temp3);
+        Map.listDelivery.add(temp2);
+
+        temp1 = new Truck(0,5,77,20,0,0,"Truck4",-1);
+        temp2 = new DeliveryPoint(false,20,20,"Delivery Point 4");
+        temp3 = new PickUp(95, 3, 0, "Pickup Point 4");
+        Map.listTruck.add(temp1);
+        Map.listPickup.add(temp3);
+        Map.listDelivery.add(temp2);
+
+        Route temp = new Route();
+        temp.initialBestRoute();*/
 
     }
 
@@ -111,6 +146,7 @@ public class Route {
         double small;//shortest distance temp variable
         int ind;//index to remove
         ArrayList<PickUp> tempPick = new ArrayList<PickUp>();
+        System.out.println("Truck size:"+ Map.listTruck.size());
         for (int w = 0; w < Map.listPickup.size(); w++) {
             tempPick.add(Map.listPickup.get(w));
         }
@@ -137,7 +173,7 @@ public class Route {
                 tempPick.add(Map.listPickup.get(w));
             }
         }
-        System.out.println("Hello: " + routes.toString() + Map.listPickup.size());
+        System.out.println("Hello: " + routes.toString() + Map.listPickup.size()+ "Truck size:"+ Map.listTruck.size());
         createPartitions();
     }
 
@@ -149,7 +185,7 @@ public class Route {
         int numVerticalPartition;
         //Finds factor thats closest to the square root of the number of trucks (numTrucks^.5)
         double sqRoot = Math.pow(Map.listTruck.size(), 0.5);
-        for (int i = 1; i < sqRoot; i++) {
+        for (int i = 1; i < sqRoot+1; i++) {
             if (Map.listTruck.size() % i == 0) {
                 if (i - sqRoot < (double) Map.listTruck.size()) {
                     highestFactor = i;
@@ -164,7 +200,7 @@ public class Route {
         double previ = 0, prevj = 0;
         int increment = 0;
         //Adds each delivery location to partition arraylist
-        this.partitions.add(new ArrayList<DeliveryPoint>());
+        //this.partitions.add(new ArrayList<DeliveryPoint>());
         for (double i = (double) 100 / numHorizontalPartition; i <= (double) 100; i = i + (double) 100 / numHorizontalPartition) {
             for (double j = (double) 100 / numVerticalPartition; j <= (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 this.partitions.add(new ArrayList<DeliveryPoint>());
@@ -176,53 +212,95 @@ public class Route {
                 }
                 increment++;
                 prevj = j;
-                this.partitions.add(new ArrayList<DeliveryPoint>());
+                //this.partitions.add(new ArrayList<DeliveryPoint>());
             }
             previ = i;
             prevj = 0;
         }
-
+//print partitions
+        for (int i = 0; i < partitions.size(); i++) {
+            System.out.println("Partition " + i);
+            for (int j = 0; j < partitions.get(i).size(); j++) {
+                if (j != 0) {
+                    System.out.print(",");
+                }
+                System.out.print(partitions.get(i).get(j).getName());
+            }
+            System.out.println();
+        }
+        //print partitions
         //assign trucks to partitions
+        /*
         for (int y = 0; y < Map.listTruck.size(); y++) {
             Map.listTruck.get(y).setPartition(y);
-        }
-/*
+        }*/
+
         PickUp tempPoint = new PickUp();
 
         double small = 0;//shortest distance temp variable
-        int ind = 0;//index of shortest path to partition
+        int ind = 0;//index of shortest pickup to partition
+        int tind = 0;//index of truck to partition
         int counter = 0;
         previ = 0;
         prevj = 0;
-        ArrayList<ArrayList<String>> troutes = routes;
-        for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
-            for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
+        ArrayList<ArrayList<String>> troutes = new ArrayList<ArrayList<String>>();
+        ArrayList<Integer> fakep = new ArrayList<Integer>();;
+        //creating arraylist for checker
+        for (int c=0; c<partitions.size();c++)
+        {
+            fakep.add(c);
+        }
+        //creating arraylist for checker
+        //copying routes to troutes
+        for(int o = 0;o<routes.size();o++)
+        {
+            troutes.add(new ArrayList<String>());
+            for(int u=0; u<routes.get(o).size();u++){
+                troutes.get(o).add(routes.get(o).get(u));
+            }
+        }
+        System.out.println(troutes);
+        //copying routes to troutes
+        for (double i = (double) 100 / numHorizontalPartition; i <= (double) 100; i = i + (double) 100 / numHorizontalPartition) {
+            for (double j = (double) 100 / numVerticalPartition; j <= (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 for (int k = 0; k < troutes.size(); k++) {
 
-                    for (int h = 0; h < Map.listPickup.size(); h++) {
+                    for (int h = 0; h < Map.listPickup.size(); h++) {//finds the cooresponding pick up truck last seen at
                         if (troutes.get(k).get(troutes.get(k).size() - 1).equals(Map.listPickup.get(h).getName())) {
                             tempPoint = Map.listPickup.get(h);
                         }
                     }
+                    System.out.println(tempPoint.getName());
                     if (k == 0) {
                         small = distancebtwn(tempPoint.getLocationX(), tempPoint.getLocationY(), (i - previ) / 2, (j - prevj) / 2);
-                        ind = 0;
+                        //ind = Map.listPickup.indexOf(tempPoint);
+                        tind=0;
                     }
                     else if (small > distancebtwn(tempPoint.getLocationX(), tempPoint.getLocationY(), (i - previ) / 2, (j - prevj) / 2) &&
                             Map.listTruck.get(k).getPartition() < 0) {
-                        ind = k;
+                        //ind = Map.listPickup.indexOf(tempPoint);//finds index of pickup point
+                        tind=k;
                     }
                 }
-                Map.listTruck.get(ind).setPartition(counter);
+                System.out.println(tind);
+                //System.out.println(ind);
+                Map.listTruck.get(tind).setPartition(counter);
                 counter++;
-                troutes.remove(ind);
+                troutes.remove(tind);
+                //fakep.remove(counter);
                 prevj = j;
 
             }
             prevj = 0;
             previ = i;
         }
-        */
+        //print out all trucks with cooresponding partitions
+        System.out.println();
+        for(int f = 0; f<Map.listTruck.size();f++)
+        {
+            System.out.println(Map.listTruck.get(f).getName()+" has partitions "+Map.listTruck.get(f).getPartition());
+        }
+        //print out all trucks with cooresponding partitions
         goToDeliveries();
     }
 
@@ -261,6 +339,7 @@ public class Route {
 
             }
         }
+        System.out.println(routes);
     }
 
     //System.out.println(distance(0, 0, 1, 1));
