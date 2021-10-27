@@ -38,6 +38,8 @@ public class FirstPage extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 @SuppressWarnings("unused")
                 TransactionGui page2 = new TransactionGui(map,matrix);
+                page2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                dispose();
             }
         });
 

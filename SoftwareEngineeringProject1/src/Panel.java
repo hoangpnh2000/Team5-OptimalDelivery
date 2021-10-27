@@ -50,9 +50,18 @@ public class Panel extends JPanel implements Runnable {
 	}
 
 	public void update() {
+		for (int i = 0; i < Map.listPickup.size(); i++){
+			  for (int j = 0; j< Map.listPickup.get(i).getPackageArrayList().size(); j++){
+			    int xcoord = Map.listPickup.get(i).getPackageArrayList().get(j).destinationX;
+			    int ycoord = Map.listPickup.get(i).getPackageArrayList().get(j).destinationY;
+			    System.out.println(xcoord+" "+ycoord);
+			  }
+			}
 	}
 
 	public void paintComponent(Graphics g) {
+		update();
+		
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
 

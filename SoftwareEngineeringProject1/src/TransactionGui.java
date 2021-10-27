@@ -20,15 +20,15 @@ public class TransactionGui extends JFrame {
 	private JLabel choosePickupLabel, numPackagesLabel;
 	private JComboBox choosePickupComboBox;
 	private JTextField numPackagesJTF;
-	private JButton continueButton, cancelButton;
-	private JTextField textX;
-	private JTextField textY;
+	private JButton continueButton, homeButton;
+	private JTextField textX, textY;
 	private JTable table;
+	private Color errorColor = new Color(255,102,102);
 	private int numPackages;
 	public String pickupLocation;
 	private int k = 0;
-	public int xCoordinate;
-	public int yCoordinate;
+	private int xCoordinate;
+	private int yCoordinate;
 
 	private Map map;
 	private String[][] matrix;
@@ -121,7 +121,7 @@ public class TransactionGui extends JFrame {
 		getContentPane().add(textY);
 		textY.setColumns(10);
 
-		JButton btnNewButton = new JButton("Update");
+		JButton btnNewButton = new JButton("Add Package");
 		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,51 +134,58 @@ public class TransactionGui extends JFrame {
 					xCoordinate = Integer.parseInt(textX.getText());
 					yCoordinate = Integer.parseInt(textY.getText());
 
-					//public String pickupLocation;
-					//Removes all the non-numerical charcters in string to match with the cooresponding pickup location
-					String identifier = pickupLocation.substring(pickupLocation.length()-1);
-					identifier = identifier.replaceAll("[^\\d.]", "");
+					if(matrix[xCoordinate][yCoordinate].equals("*")) {
+						//public String pickupLocation;
+						//Removes all the non-numerical charcters in string to match with the cooresponding pickup location
+						String identifier = pickupLocation.substring(pickupLocation.length()-1);
+						identifier = identifier.replaceAll("[^\\d.]", "");
 
-			//use the string of the pickup location and the x and y coordinates to add a new package to the packagearraylist of the correct pickup object
-					//public static ArrayList<Package> packageArrayList = new ArrayList<Package>();
-					for (int bruh = 0; bruh < Map.listPickup.size(); bruh++){
-						if (Map.listPickup.get(bruh).getName().contains(identifier)){
-							//Adds new package with corresponding origin and destination coordinates to pickup location of user's choice
-							Map.listPickup.get(bruh).packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX, Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
-							System.out.println("We gucci");
-							break;
+						//use the string of the pickup location and the x and y coordinates to add a new package to the packagearraylist of the correct pickup object
+						//public static ArrayList<Package> packageArrayList = new ArrayList<Package>();
+						for (int bruh = 0; bruh < Map.listPickup.size(); bruh++){
+							if (Map.listPickup.get(bruh).getName().contains(identifier)){
+								//Adds new package with corresponding origin and destination coordinates to pickup location of user's choice
+								Map.listPickup.get(bruh).packageArrayList.add(new Package(false, false, Map.listPickup.get(bruh).locationX,Map.listPickup.get(bruh).locationY, xCoordinate, yCoordinate));
+								System.out.println("We gucci");
+								break;
+							}
 						}
-					}
-
+						
 
 //					Map.listPickup.get(i).getPackageArrayList().get(j);
 
 
 
 
-					textX.setBackground(Color.white);
-					textY.setBackground(Color.white);
+						textX.setBackground(Color.white);
+						textY.setBackground(Color.white);
+						
+						if (i > 0) {
+							model.addRow(new Object[] { pickupLocation, textX.getText(), textY.getText(), numPackages });
+						}
+						k++;
+						if (i <= 1) {
+							btnNewButton.setEnabled(false);
+							lblNewLabel.setEnabled(false);
+							lblPickupPoint.setEnabled(false);
+							lblNewLabel_2.setEnabled(false);
+							// lblNewLabel_3.setEnabled(false);
+							// lblPackageNum.setEnabled(false);
+							lblNewLabel_5.setEnabled(false);
+							lblNewLabel_6.setEnabled(false);
+							textX.setEnabled(false);
+							textY.setEnabled(false);
+							k = 0;
+						}
+					}else {
+						System.out.println("ERROR: Point already occupied");
+						JOptionPane.showMessageDialog(null, "Point already occupied.", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					}
 					
-					if (i > 0) {
-						model.addRow(new Object[] { pickupLocation, textX.getText(), textY.getText(), numPackages });
-					}
-					k++;
-					if (i <= 1) {
-						btnNewButton.setEnabled(false);
-						lblNewLabel.setEnabled(false);
-						lblPickupPoint.setEnabled(false);
-						lblNewLabel_2.setEnabled(false);
-						// lblNewLabel_3.setEnabled(false);
-						// lblPackageNum.setEnabled(false);
-						lblNewLabel_5.setEnabled(false);
-						lblNewLabel_6.setEnabled(false);
-						textX.setEnabled(false);
-						textY.setEnabled(false);
-						k = 0;
-					}
 				} catch (Exception ecp) {
-					textX.setBackground(Color.red);
-					textY.setBackground(Color.red);
+					textX.setBackground(errorColor);
+					textY.setBackground(errorColor);
 					System.out.println("ERROR: Must enter valid coordinates.");
 					JOptionPane.showMessageDialog(null, "Must enter valid coordinates.", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
@@ -190,7 +197,7 @@ public class TransactionGui extends JFrame {
 
 		// Buttons on bottom
 		// Continue to add package details
-		continueButton = new JButton("Continue");
+		continueButton = new JButton("Next");
 		continueButton.setBounds(10, 110, 165, 45);
 		contentPane.add(continueButton);
 		continueButton.addActionListener(new ActionListener() {
@@ -202,11 +209,6 @@ public class TransactionGui extends JFrame {
 					numPackages = Integer.parseInt(numPackagesJTF.getText());
 					System.out.println("packages: " + numPackages);
 					numPackagesJTF.setBackground(Color.white);
-
-					/*
-					 * for(int i=1; i<= numPackages; i++) { //AddTransactionPage page = new
-					 * AddTransactionPage(i,numPackages,pickupLocation); }
-					 */
 
 					lblPickupPoint.setText(pickupLocation);
 					// lblPackageNum.setText(Integer.toString(numPackages));
@@ -222,7 +224,7 @@ public class TransactionGui extends JFrame {
 					textY.setEnabled(true);
 
 				} catch (Exception ecp) {
-					numPackagesJTF.setBackground(Color.red);
+					numPackagesJTF.setBackground(errorColor);
 					System.out.println("ERROR: Must enter number in 'Number of Packages' field.");
 					JOptionPane.showMessageDialog(null, "Must enter number in 'Number of Packages' field.", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
@@ -231,10 +233,17 @@ public class TransactionGui extends JFrame {
 			}
 		});
 
-		// Cancel
-		continueButton = new JButton("Cancel");
-		continueButton.setBounds(383, 336, 165, 45);
-		contentPane.add(continueButton);
+		// Go Back
+		homeButton = new JButton("Go Back to Home");
+		homeButton.setBounds(383, 336, 165, 45);
+		contentPane.add(homeButton);
+		homeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FirstPage home = new FirstPage(map, map.completedMap);
+				home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				dispose();
+			}
+		});
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(504, 24, 346, 302);
@@ -243,11 +252,6 @@ public class TransactionGui extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "X", "Y", "Num" }));
 		scrollPane.setViewportView(table);
-		continueButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 
 		// Information about window
 		setTitle("Add Pick Up Location");
