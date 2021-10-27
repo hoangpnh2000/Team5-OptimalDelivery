@@ -19,7 +19,12 @@ public class Truck {
         this.speed = speed;
         this.numPackages = numPackages;
         this.name = name;
+<<<<<<< HEAD
         this.partition = -1;
+=======
+        this.partitionAngle1 = partitionAngle1;
+        this.partitionAngle2 = partitionAngle2;
+>>>>>>> parent of 1d9b08c (Update Route)
     }
 
     //Get Methods
@@ -71,6 +76,7 @@ public class Truck {
 
     public void setSpeed(int n) {
         this.speed = n;
+<<<<<<< HEAD
     }
 
     public void setPartitionAngle1 (double angle1){
@@ -83,6 +89,16 @@ public class Truck {
 
 =    public void setPartition(int partition) {
         this.partition;
+=======
+    }
+
+    public void setPartitionAngle1 (double angle1){
+        this.partitionAngle1 = angle1;
+    }
+
+    public void setPartitionAngle2 (double angle2) {
+        this.partitionAngle2 = angle2;
+>>>>>>> parent of 1d9b08c (Update Route)
     }
 
     //Might be redundant depending on how we want to do refueling

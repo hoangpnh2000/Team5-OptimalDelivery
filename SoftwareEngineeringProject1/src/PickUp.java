@@ -18,11 +18,15 @@ public class PickUp {
         this.name = name;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public PickUp(){
 
     }
 =======
+>>>>>>> parent of 1d9b08c (Update Route)
+=======
+
 >>>>>>> parent of 1d9b08c (Update Route)
 
     //Set methods

@@ -159,6 +159,7 @@ public class Route {
             prevj = 0;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         //assign trucks to partitions
         PickUp tempPoint = new PickUp();
         double small = 0;//shortest distance temp variable
@@ -226,6 +227,12 @@ public class Route {
 
     public double distancebtwn(double x1, double y1, double x2, double y2) {
         return (Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
+=======
+    }
+    //assign trucks
+    public void assignTrucks(){
+
+>>>>>>> parent of 1d9b08c (Update Route)
     }
     //assign trucks
     public void assignTrucks() {
