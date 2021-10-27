@@ -127,21 +127,23 @@ public class Route {
         double highestFactor = Map.listTruck.size();
         int numHorizontalPartition;
         int numVerticalPartition;
-
+        //Finds factor thats closest to the square root of the number of trucks (numTrucks^.5)
         double sqRoot = Math.pow(Map.listTruck.size(), 0.5);
-        for (int i = 0; i < sqRoot; i++) {
+        for (int i = 1; i < sqRoot; i++) {
             if (Map.listTruck.size() % i == 0) {
                 if (i - sqRoot < (double) Map.listTruck.size()) {
                     highestFactor = i;
                 }
             }
         }
+        //Determines the distance between each vertical and horizontal partition
         numHorizontalPartition = (int) highestFactor;
         numVerticalPartition = Map.listTruck.size() / numHorizontalPartition;
+
+
         double previ = 0, prevj = 0;
         int increment = 0;
-
-
+        //Adds each delivery location to partition arraylist
         for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
             for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
@@ -156,51 +158,50 @@ public class Route {
             previ = i;
             prevj = 0;
         }
-        //assign trucks
-        PickUp tempPoint=new PickUp();
-        double small=0;//shortest distance temp variable
-        int ind=0;//index of shortest path to partition
-        int counter=0;
+        //assign trucks to partitions
+        PickUp tempPoint = new PickUp();
+        double small = 0;//shortest distance temp variable
+        int ind = 0;//index of shortest path to partition
+        int counter = 0;
         previ = 0;
         prevj = 0;
         ArrayList<ArrayList<String>> troutes = this.routes;
         for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
             for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 for (int k = 0; k < troutes.size(); k++) {
-                    for(int h = 0; h< Map.listPickup.size();h++)
-                    {
-                        if(troutes.get(k).get(troutes.get(k).size()-1).equals(Map.listPickup.get(h).getName())){
-                            tempPoint=Map.listPickup.get(h);
+                    for (int h = 0; h < Map.listPickup.size(); h++) {
+                        if (troutes.get(k).get(troutes.get(k).size() - 1).equals(Map.listPickup.get(h).getName())) {
+                            tempPoint = Map.listPickup.get(h);
                         }
                     }
-                    if(k==0){
-                        small=distancebtwn(tempPoint.getLocationX(),tempPoint.getLocationY(),(i-previ)/2,(j-prevj)/2);
+                    if (k == 0) {
+                        small = distancebtwn(tempPoint.getLocationX(), tempPoint.getLocationY(), (i - previ) / 2, (j - prevj) / 2);
                     }
-                    if(small>distancebtwn(tempPoint.getLocationX(),tempPoint.getLocationY(),(i-previ)/2,(j-prevj)/2))
-                    {
-                        ind=k;
+                    if (small > distancebtwn(tempPoint.getLocationX(), tempPoint.getLocationY(), (i - previ) / 2, (j - prevj) / 2)) {
+                        ind = k;
                     }
 
                 }
                 Map.listTruck.get(ind).setPartition(counter);
                 counter++;
                 troutes.remove(ind);
-                prevj=j;
+                prevj = j;
             }
-            previ=i;
-            prevj=0;
+            previ = i;
+            prevj = 0;
         }
     }
+
     //private final ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
-    //private final ArrayList<ArrayList<String>> partitions; //arraylist of partitions using strings to represent 
+    //private final ArrayList<ArrayList<String>> partitions; //arraylist of partitions using strings to represent
     //know that route coooresepond to truck and truck has the partition values assigned to it
     //grab partition values and work with deliveries in that partition.
-    public void goToDeliveries(){
+    public void goToDeliveries() {
         //initializing first pickup point for each truck (the closest one to go to)
         String temp;//temporary variable to store pick up name location
         double small;//shortest distance temp variable
         int ind;//index to remove
-        ArrayList<PickUp> tempPick = Map.listPickup;//this should be deliveries 
+        ArrayList<PickUp> tempPick = Map.listPickup;//this should be deliveries
         for (int i = 0; i < Map.listTruck.size(); i++) {
             while (tempPick.size() > 0) {
                 this.routes.get(i).add(Map.listTruck.get(i).getName());
@@ -222,10 +223,9 @@ public class Route {
     }
 
 
-    public double distancebtwn(double x1, double y1, double x2, double y2 ){
-        return(Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)));
+    public double distancebtwn(double x1, double y1, double x2, double y2) {
+        return (Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
     }
-
 
 
     //System.out.println(distance(0, 0, 1, 1));
