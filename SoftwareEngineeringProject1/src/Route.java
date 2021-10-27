@@ -159,13 +159,10 @@ public class Route {
         //Adds each delivery location to partition arraylist
         for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
             for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
+                this.partitions.add(new ArrayList<>());
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
                     if (Map.listDelivery.get(k).locationX > prevj && Map.listDelivery.get(k).locationX < j
                             && Map.listDelivery.get(k).locationY > previ && Map.listDelivery.get(k).locationY < i) {
-                        if(k == 0)
-                        {
-                            this.partitions.add(new ArrayList<>());
-                        }
                         this.partitions.get(increment).add(Map.listDelivery.get(k));
                     }
                 }
