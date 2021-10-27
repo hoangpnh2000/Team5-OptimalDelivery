@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Route {
 
-    public final ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
+    public static ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
     //private ArrayList<ArrayList<WeightedGraph> > partitions; //arraylist of graphs using partitions
     //private WeightedGraph pickGraph;//graph for pickup points and trucks
-    public final ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
+    public static ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
 
     public Route() {
         this.routes = new ArrayList<>();
