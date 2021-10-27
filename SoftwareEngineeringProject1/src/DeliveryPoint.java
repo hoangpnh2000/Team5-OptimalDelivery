@@ -1,8 +1,8 @@
 public class DeliveryPoint {
 
     private boolean delivered = false;
-    private int locationX;
-    private int locationY;
+    public int locationX;
+    public int locationY;
     private final String deliveryPoint = "P";
     private final String name;
 

@@ -5,7 +5,7 @@ public class Route {
     public static ArrayList<ArrayList<String>> routes;//string of names based on the delivery, pickup and truck number
     //private ArrayList<ArrayList<WeightedGraph> > partitions; //arraylist of graphs using partitions
     //private WeightedGraph pickGraph;//graph for pickup points and trucks
-    public static ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
+    public ArrayList<ArrayList<DeliveryPoint>> partitions; //arraylist of graphs using partitions
 
     public Route() {
         this.routes = new ArrayList<>();
@@ -64,7 +64,7 @@ public class Route {
 
     public static void main(String[] args) {
         ArrayList<Package> packageList;
-        ArrayList<String> Directions = new ArrayList<String>();
+        ArrayList<String> Directions = new ArrayList<>();
         for (int i = 0; i < Map.listPickup.size(); i++) {
             packageList = Map.listPickup.get(i).getPackageArrayList();
             for (Package aPackage : packageList) {
@@ -114,6 +114,7 @@ public class Route {
         for (int i = 0; i < Map.listTruck.size(); i++) {
             while (tempPick.size() > 0) {
             	this.routes.add(new ArrayList<String>());
+                this.routes.add(new ArrayList<String>());
                 this.routes.get(i).add(Map.listTruck.get(i).getName());
                 small = Math.sqrt(Math.pow(Map.listTruck.get(i).getLocationX() - tempPick.get(0).getLocationX(), 2) + Math.pow(Map.listTruck.get(i).getLocationY() - tempPick.get(0).getLocationY(), 2));
                 temp = tempPick.get(0).getName();
@@ -159,8 +160,12 @@ public class Route {
         for (double i = (double) 100 / numHorizontalPartition; i < (double) 100; i = i + (double) 100 / numHorizontalPartition) {
             for (double j = (double) 100 / numVerticalPartition; j < (double) 100; j = j + (double) 100 / numVerticalPartition) {
                 for (int k = 0; k < Map.listDelivery.size(); k++) {
-                    if (Map.listDelivery.get(k).getLocationX() > prevj && Map.listDelivery.get(k).getLocationX() < j
-                            && Map.listDelivery.get(k).getLocationY() > previ && Map.listDelivery.get(k).getLocationY() < i) {
+                    if (Map.listDelivery.get(k).locationX > prevj && Map.listDelivery.get(k).locationX < j
+                            && Map.listDelivery.get(k).locationY > previ && Map.listDelivery.get(k).locationY < i) {
+                        if(k == 0)
+                        {
+                            this.partitions.add(new ArrayList<>());
+                        }
                         this.partitions.get(increment).add(Map.listDelivery.get(k));
                     }
                 }
@@ -215,8 +220,6 @@ public class Route {
         String temp;//temporary variable to store pick up name location
         double small;//shortest distance temp variable
         int ind;//index to remove
-
-
         for (int p = 0; p < Map.listTruck.size(); p++) {
             tempDel = partitions.get(Map.listTruck.get(p).getPartition());//tempDel is the arraylist of delivery points
             while (tempDel.size() > 0) {
@@ -228,7 +231,7 @@ public class Route {
                 }
                 small = Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(0).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(0).getLocationY(), 2));
                 temp = tempDel.get(0).getName();
-                ind = 1;
+                ind = 0;
                 for (int j = 0; j < tempDel.size(); j++) {
                     if (small > Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(j).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(j).getLocationY(), 2))) {
                         small = Math.sqrt(Math.pow(tempPoint.getLocationX() - tempDel.get(j).getLocationX(), 2) + Math.pow(tempPoint.getLocationY() - tempDel.get(j).getLocationY(), 2));
