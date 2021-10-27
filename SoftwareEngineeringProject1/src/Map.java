@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +25,8 @@ public class Map {
         for (String[] row : completedMap) {
             Arrays.fill(row, "*");
         }
+        int stupid = numTrucks;
+
         try {
             //Hashset for uniquely generated ints
             //Will be used to indicate locations in matrix of notable objects
@@ -36,15 +39,17 @@ public class Map {
                 int temp = (int) Math.floor(Math.random() * (max - min + 1) + min);
                 set.add(temp);
             }
-            //Convert set to array for easier manipulation
+            //Convert set to List for easier manipulation
             System.out.println("the size of the set is " + set.size());
-            Integer[] temp = new Integer[set.size()];
-            set.toArray(temp);
+            System.out.println("This is the set prior to making graph:      " + set);
 
+            //Randomizes set and casts to int array
+            int[] temp = Arrays.stream(set.toArray(new Integer[0])).mapToInt(i->i).toArray();
+
+            RandomizeArray(temp);
+            //Iterates through converted set, populates matrix
             int tempTruck = 1;
             int tempPickup = 1;
-            int convenientFix = 0; //Literally don't worry about it
-            //Iterates through converted set, populates matrix
             for (Integer integer : temp) {
                 /*
                     Trucks have identifier from 0 to numTrucks-1 (inclusive)
@@ -52,13 +57,13 @@ public class Map {
                     Delivery locations have identifier from numTrucks+numPickup to numTrucks+numPickup+numDelivery
                  */
                 //Trucks have identifier of String "T" in matrix
-                if (convenientFix == 0) {
+                if (numTrucks > 0) {
                     completedMap[integer % rows][integer / rows] = "T";
                     //Create Truck object, add to list of all available trucks
                     Truck truck = new Truck(50, 100, integer % rows, integer / rows, 60, 0, "Truck " + tempTruck, -1);  //Arbitrary values for now
                     tempTruck++;
                     listTruck.add(truck);
-                    convenientFix++;
+                    numTrucks--;
                 }
                 //Pickup has identifier of String "P" in matrix
                 else {
@@ -68,13 +73,16 @@ public class Map {
                     listPickup.add(pickup);
                     PickUp.generatePackages(pickup.locationX, pickup.locationY);  //Generate packages for pickup location
                     //System.out.println(listPickup.get(i).getName());
-                    convenientFix = 0;
                 }
             }
         } catch (Exception e) {
             System.out.println("Something went wrong. \nCheck for invalid inputs.");
         }
 
+
+        System.out.println("There are supposed to be " + stupid);
+        System.out.println("There are actually " + listTruck.size());
+        /*
         //Print for debugging
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -82,10 +90,47 @@ public class Map {
             }
             System.out.println();
         }
+        */
         return completedMap;
     }
+    public static int[] RandomizeArray(int[] array){
+        Random rand = new Random();  // Random number generator
 
-    //Creates graphical representation of Map
+        for (int i=0; i<array.length; i++) {
+            int randomPosition = rand.nextInt(array.length);
+            int temp = array[i];
+            array[i] = array[randomPosition];
+            array[randomPosition] = temp;
+        }
+
+        return array;
+    }
+/*
+    public static String[][] updateMap(ArrayList<PickUp> listPickup) {
+
+        for (int i = 0; i < listPickup.size(); i++){
+            for (int j = 0; j < listPickup.get(i).packageArrayList.size(); j++){
+                completedMap[listPickup.get(i).packageArrayList.get(j).destinationX][listPickup.get(i).packageArrayList.get(j).destinationY]
+            }
+        }
+
+
+
+
+
+
+
+
+        for (int i = 0; i < completedMap.length; i++){
+            for (int j = 0; i < completedMap[0].length; j++){
+
+            }
+        }
+        return completedMap;
+    }
+*/
+
+        //Creates graphical representation of Map
     public void createGraph(ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
         mapGraph = new WeightedGraph.GraphWeighted();
         for (int i = 0; i < listTruck.size(); i++) {

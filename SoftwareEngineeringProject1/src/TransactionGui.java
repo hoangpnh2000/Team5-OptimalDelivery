@@ -151,6 +151,10 @@ public class TransactionGui extends JFrame {
 					}
 
 
+//					Map.listPickup.get(i).getPackageArrayList().get(j);
+
+
+
 
 					textX.setBackground(Color.white);
 					textY.setBackground(Color.white);
