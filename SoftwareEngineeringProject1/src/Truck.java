@@ -19,8 +19,7 @@ public class Truck {
         this.speed = speed;
         this.numPackages = numPackages;
         this.name = name;
-        this.partitionAngle1 = partitionAngle1;
-        this.partitionAngle2 = partitionAngle2;
+        this.partition = -1;
     }
 
     //Get Methods
@@ -80,6 +79,10 @@ public class Truck {
 
     public void setPartitionAngle2 (double angle2) {
         this.partitionAngle2 = angle2;
+    }
+
+=    public void setPartition(int partition) {
+        this.partition;
     }
 
     //Might be redundant depending on how we want to do refueling

@@ -158,6 +158,7 @@ public class Route {
             previ = i;
             prevj = 0;
         }
+<<<<<<< HEAD
         //assign trucks to partitions
         PickUp tempPoint = new PickUp();
         double small = 0;//shortest distance temp variable
@@ -228,6 +229,12 @@ public class Route {
     }
     //assign trucks
     public void assignTrucks() {
+=======
+    }
+    //assign trucks
+    public void assignTrucks(){
+
+>>>>>>> parent of 1d9b08c (Update Route)
     }
 
     //System.out.println(distance(0, 0, 1, 1));

@@ -17,10 +17,13 @@ public class PickUp {
         this.packageArrayList = packageArrayList;
         this.name = name;
     }
+<<<<<<< HEAD
 
     public PickUp(){
 
     }
+=======
+>>>>>>> parent of 1d9b08c (Update Route)
 
     //Set methods
     public void setLocation(int x, int y) {
