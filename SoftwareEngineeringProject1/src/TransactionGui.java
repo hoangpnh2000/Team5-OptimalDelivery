@@ -138,7 +138,7 @@ public class TransactionGui extends JFrame {
 						model.addRow(new Object[] { pickupLocation, textX.getText(), textY.getText(), numPackages });
 					}
 					k++;
-					if (i <= 0) {
+					if (i <= 1) {
 						btnNewButton.setEnabled(false);
 						lblNewLabel.setEnabled(false);
 						lblPickupPoint.setEnabled(false);
