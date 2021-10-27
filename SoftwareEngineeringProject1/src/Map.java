@@ -1,4 +1,8 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Map {
     //Global variables
     public static String[][] completedMap;
@@ -37,8 +41,8 @@ public class Map {
             Integer[] temp = new Integer[set.size()];
             set.toArray(temp);
 
-
-
+            int tempTruck = 1;
+            int tempPickup = 1;
             //Iterates through converted set, populates matrix
             for (int i = 0; i < temp.length; i++) {
                 /*
@@ -50,22 +54,24 @@ public class Map {
                 if (i < numTrucks) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
-                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0,"Truck" + i, 360/numTrucks* i,360/numTrucks*(i+1));  //Arbitrary values for now
+                    Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0, "Truck " + tempTruck, -1);  //Arbitrary values for now
+                    tempTruck++;
                     listTruck.add(truck);
                 }
                 //Pickup has identifier of String "P" in matrix
                 else if (i < numTrucks + numPickup) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
-                    PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3, PickUp.packageArrayList,"Pick up point" + i);  //Arbitrary values for now
-                        listPickup.add(pickup);
-                    pickup.generatePackages(pickup.locationX, pickup.locationY);  //Generate packages for pickup location
+                    PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3, PickUp.packageArrayList, "Pick up point " + tempPickup);  //Arbitrary values for now
+                    tempPickup++;
+                    listPickup.add(pickup);
+                    PickUp.generatePackages(pickup.locationX, pickup.locationY);  //Generate packages for pickup location
 
                     //System.out.println(listPickup.get(i).getName());
                 }
                 //Delivery has identifier of String "D" in matrix
                 else {
                     completedMap[temp[i] % rows][temp[i] / rows] = "D";
-                    DeliveryPoint delivery = new DeliveryPoint(false, temp[i] % rows, temp[i] / rows, "Delivery point "+ i);  //Arbitrary values for now
+                    DeliveryPoint delivery = new DeliveryPoint(false, temp[i] % rows, temp[i] / rows, "Delivery point " + i);  //Arbitrary values for now
                     listDelivery.add(delivery);
                 }
             }
@@ -84,13 +90,13 @@ public class Map {
     }
 
     //Creates graphical representation of Map
-    public void createGraph (ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
+    public void createGraph(ArrayList<Truck> listTruck, ArrayList<PickUp> listPickup, ArrayList<DeliveryPoint> listDelivery) {
         mapGraph = new WeightedGraph.GraphWeighted();
-        for (int i = 0; i < listTruck.size(); i++){
+        for (int i = 0; i < listTruck.size(); i++) {
             String truckName = "Truck " + i + 1;
             WeightedGraph.NodeWeighted truck = new WeightedGraph.NodeWeighted(truckName);
 
-            for (int j = 0; j < listPickup.size(); j++){
+            for (int j = 0; j < listPickup.size(); j++) {
                 int distX = listPickup.get(j).getLocationX();
                 int distY = listPickup.get(j).getLocationY();
                 double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).getLocationX(), 2) + Math.pow(distY - listTruck.get(i).getLocationY(), 2));
@@ -99,14 +105,14 @@ public class Map {
                 WeightedGraph.NodeWeighted pickup = new WeightedGraph.NodeWeighted(pickupName);
                 mapGraph.addEdge(truck, pickup, dist);
             }
-            for (int j = 0; j < listDelivery.size(); j++){
+            for (int j = 0; j < listDelivery.size(); j++) {
                 int distX = listDelivery.get(j).getLocationX();
                 int distY = listDelivery.get(j).getLocationY();
                 double dist = Math.sqrt(Math.pow(distX - listTruck.get(i).getLocationX(), 2) + Math.pow(distY - listTruck.get(i).getLocationY(), 2));
 
                 String deliveryName = "Delivery " + i + 1;
                 WeightedGraph.NodeWeighted delivery = new WeightedGraph.NodeWeighted(deliveryName);
-                mapGraph.addEdge(truck,delivery, dist);
+                mapGraph.addEdge(truck, delivery, dist);
             }
         }
         //Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0);  //Arbitrary values for now

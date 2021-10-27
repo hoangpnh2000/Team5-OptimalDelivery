@@ -5,13 +5,12 @@ public class Truck {
     private int locationX;
     private int locationY;
     private int speed;
-    private int numPackages;
-    private String name;
-    private double partitionAngle1;
-    private double partitionAngle2;
+    private final int numPackages;
+    private final String name;
+    private int partition;
 
     //Constructor
-    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed, int numPackages, String name, double partitionAngle1, double partitionAngle2) {
+    public Truck(int currentFuel, int fuelCapacity, int locationX, int locationY, int speed, int numPackages, String name, int partition) {
         this.currentFuel = currentFuel;
         this.fuelCapacity = fuelCapacity;
         this.locationX = locationX;
@@ -19,22 +18,7 @@ public class Truck {
         this.speed = speed;
         this.numPackages = numPackages;
         this.name = name;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        this.partition = -1;
-=======
-        this.partitionAngle1 = partitionAngle1;
-        this.partitionAngle2 = partitionAngle2;
->>>>>>> parent of 1d9b08c (Update Route)
-=======
-        this.partitionAngle1 = partitionAngle1;
-        this.partitionAngle2 = partitionAngle2;
->>>>>>> parent of 1d9b08c (Update Route)
-=======
-        this.partitionAngle1 = partitionAngle1;
-        this.partitionAngle2 = partitionAngle2;
->>>>>>> parent of 1d9b08c (Update Route)
+        this.partition = partition;
     }
 
     //Get Methods
@@ -42,94 +26,53 @@ public class Truck {
         return this.currentFuel;
     }
 
+    //Set methods
+    public void setCurrentFuel(int n) {
+        this.currentFuel = n;
+    }
+
     public int getSpeed() {
         return this.speed;
+    }
+
+    public void setSpeed(int n) {
+        this.speed = n;
     }
 
     public int getFuelCapacity() {
         return this.fuelCapacity;
     }
 
-    public int getLocationX() {
-        return this.locationX;
-    }
-
-    public int getLocationY() {
-        return this.locationY;
-    }
-
-    public double getPartitionAngle2() {
-        return this.partitionAngle2;
-    }
-
-    public double getPartitionAngle1() {
-        return this.partitionAngle1;
-    }
-
-    public String getName() {return this.name;}
-
-    //Set methods
-    public void setCurrentFuel(int n) {
-        this.currentFuel = n;}
-
     public void setFuelCapacity(int n) {
         this.fuelCapacity = n;
+    }
+
+    public int getLocationX() {
+        return this.locationX;
     }
 
     public void setLocationX(int x) {
         this.locationX = x;
     }
 
+    public int getLocationY() {
+        return this.locationY;
+    }
+
     public void setLocationY(int y) {
         this.locationY = y;
     }
 
-    public void setSpeed(int n) {
-        this.speed = n;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 1d9b08c (Update Route)
+    public int getPartition() {
+        return this.partition;
     }
 
-    public void setPartitionAngle1 (double angle1){
-        this.partitionAngle1 = angle1;
-<<<<<<< HEAD
+    public void setPartition(int n) {
+        this.partition = n;
     }
 
-    public void setPartitionAngle2 (double angle2) {
-        this.partitionAngle2 = angle2;
-    }
-
-=    public void setPartition(int partition) {
-        this.partition;
-=======
-    }
-
-    public void setPartitionAngle1 (double angle1){
-        this.partitionAngle1 = angle1;
-    }
-
-    public void setPartitionAngle2 (double angle2) {
-        this.partitionAngle2 = angle2;
->>>>>>> parent of 1d9b08c (Update Route)
-=======
-    }
-
-    public void setPartitionAngle2 (double angle2) {
-        this.partitionAngle2 = angle2;
->>>>>>> parent of 1d9b08c (Update Route)
-=======
-    }
-
-    public void setPartitionAngle1 (double angle1){
-        this.partitionAngle1 = angle1;
-    }
-
-    public void setPartitionAngle2 (double angle2) {
-        this.partitionAngle2 = angle2;
->>>>>>> parent of 1d9b08c (Update Route)
+    public String getName() {
+        return this.name;
     }
 
     //Might be redundant depending on how we want to do refueling
@@ -140,7 +83,8 @@ public class Truck {
             this.currentFuel = this.fuelCapacity;
         }
     }
-    public String toString(){
-        return("Truck at " + this.locationX + this.locationY);
+
+    public String toString() {
+        return ("Truck at " + this.locationX + this.locationY);
     }
 }

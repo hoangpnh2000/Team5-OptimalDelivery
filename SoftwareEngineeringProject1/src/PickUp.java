@@ -17,23 +17,9 @@ public class PickUp {
         this.packageArrayList = packageArrayList;
         this.name = name;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
     public PickUp(){
 
     }
-=======
->>>>>>> parent of 1d9b08c (Update Route)
-=======
-=======
->>>>>>> parent of 1d9b08c (Update Route)
-=======
->>>>>>> parent of 1d9b08c (Update Route)
-
->>>>>>> parent of 1d9b08c (Update Route)
 
     //Set methods
     public void setLocation(int x, int y) {
@@ -63,8 +49,8 @@ public class PickUp {
     public int getLocationY() {
         return this.locationY;
     }
-    public String getName() {
-    	return this.name;
+    public String getName(){
+        return this.name;
     }
     
     public ArrayList<Package> getPackageArrayList(){

@@ -3,8 +3,8 @@ public class DeliveryPoint {
     private boolean delivered = false;
     private int locationX;
     private int locationY;
-    private String deliveryPoint = "P";
-    private String name;
+    private final String deliveryPoint = "P";
+    private final String name;
 
 
     public DeliveryPoint(boolean delivered, int locationX, int locationY, String name) {
@@ -39,14 +39,16 @@ public class DeliveryPoint {
         return this.locationY;
     }
 
-    public String getName() {return this.name;}
+    public String getName() {
+        return this.name;
+    }
 
     public boolean isPickedUp() {
         return this.delivered;
     }
 
-    public String toString(){
-        return("Delivery point at " + this.locationX + this.locationY);
+    public String toString() {
+        return ("Delivery point at " + this.locationX + this.locationY);
     }
 
 
