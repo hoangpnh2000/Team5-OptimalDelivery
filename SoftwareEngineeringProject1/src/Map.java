@@ -43,7 +43,7 @@ public class Map {
 
             int tempTruck = 1;
             int tempPickup = 1;
-            int stupid = 0;
+            int convenientFix = 0; //Literally don't worry about it
             //Iterates through converted set, populates matrix
             for (int i = 0; i < temp.length; i++) {
                 /*
@@ -52,30 +52,28 @@ public class Map {
                     Delivery locations have identifier from numTrucks+numPickup to numTrucks+numPickup+numDelivery
                  */
                 //Trucks have identifier of String "T" in matrix
-                if (stupid == 0) {
+                if (convenientFix == 0) {
                     completedMap[temp[i] % rows][temp[i] / rows] = "T";
                     //Create Truck object, add to list of all available trucks
                     Truck truck = new Truck(50, 100, temp[i] % rows, temp[i] / rows, 60, 0, "Truck " + tempTruck, -1);  //Arbitrary values for now
                     tempTruck++;
                     listTruck.add(truck);
-                    stupid++;
+                    convenientFix++;
                 }
                 //Pickup has identifier of String "P" in matrix
-                else if (stupid == 1) {
+                else if (convenientFix == 1) {
+
                     completedMap[temp[i] % rows][temp[i] / rows] = "P";
                     PickUp pickup = new PickUp(temp[i] % rows, temp[i] / rows, 3, PickUp.packageArrayList, "Pick up point " + tempPickup);  //Arbitrary values for now
                     tempPickup++;
                     listPickup.add(pickup);
                     PickUp.generatePackages(pickup.locationX, pickup.locationY);  //Generate packages for pickup location
-                    stupid++;
+                    convenientFix++;
                     //System.out.println(listPickup.get(i).getName());
                 }
                 //Delivery has identifier of String "D" in matrix
                 else {
-                    completedMap[temp[i] % rows][temp[i] / rows] = "D";
-                    DeliveryPoint delivery = new DeliveryPoint(false, temp[i] % rows, temp[i] / rows, "Delivery point " + i);  //Arbitrary values for now
-                    listDelivery.add(delivery);
-                    stupid = 0;
+                    convenientFix = 0;
                 }
             }
         } catch (Exception e) {
