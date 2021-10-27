@@ -33,14 +33,17 @@ public class Map {
             //Set will be unsorted
             Set<Integer> set = new HashSet<>();
             //Generates random number within range, cast to int
-            for (int i = 0; i < numTrucks + numPickup ; i++) {
-                int max = rows * columns - 1;
-                int min = 0;
+            System.out.println("numTrucks is of size " + numTrucks);
+            System.out.println("numPickup is of size " + numPickup);
+            int max = rows * columns - 1;
+            int min = 0;
+            while (set.size() != (numTrucks + numPickup)){
                 int temp = (int) Math.floor(Math.random() * (max - min + 1) + min);
                 set.add(temp);
             }
             //Convert set to List for easier manipulation
             System.out.println("the size of the set is " + set.size());
+            System.out.println("the size of the set is supposed to be " + (numPickup+numTrucks));
             System.out.println("This is the set prior to making graph:      " + set);
 
             //Randomizes set and casts to int array
