@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class FirstPage extends JFrame {
 
     private JLabel welcomeText;
-    private JButton addTransactionButton, seeMapButton, seeTransactionsButton;
+    private JButton addTransactionButton, seeMapButton, helpButton;
 
     
     private Map map;
@@ -59,16 +59,15 @@ public class FirstPage extends JFrame {
                 //dispose();
             }
         });
-/*
-        seeTransactionsButton = new JButton("See Route");
-        seeTransactionsButton.setBounds(10, 155, 280, 50);
-        contentPane.add(seeTransactionsButton);
-        seeTransactionsButton.addActionListener(new ActionListener() {
+
+        helpButton = new JButton("See Route");
+        helpButton.setBounds(10, 155, 280, 50);
+        contentPane.add(helpButton);
+        helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
-                @SuppressWarnings("unused")
-                SeeRouteGui route = new SeeRouteGui();
+                HelpPage page3 = new HelpPage(map,matrix);
             }
-        });*/
+        });
 
         setTitle("Optimal Delivery");
         setSize(300, 250);

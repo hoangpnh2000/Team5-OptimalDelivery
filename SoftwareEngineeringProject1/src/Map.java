@@ -33,7 +33,7 @@ public class Map {
                 set.add(temp);
             }
             //Convert set to array for easier manipulation
-            System.out.println("the sizew of the set is " + set.size());
+            System.out.println("the size of the set is " + set.size());
             Integer[] temp = new Integer[set.size()];
             set.toArray(temp);
 
