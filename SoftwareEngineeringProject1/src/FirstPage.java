@@ -60,7 +60,7 @@ public class FirstPage extends JFrame {
             }
         });
 
-        helpButton = new JButton("Help");
+        helpButton = new JButton("See Route");
         helpButton.setBounds(10, 155, 280, 50);
         contentPane.add(helpButton);
         helpButton.addActionListener(new ActionListener() {
