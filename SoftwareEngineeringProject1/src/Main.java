@@ -16,7 +16,6 @@ public class Main {
     	int limit = size/5;
     	int pickups = rand.nextInt(limit) + 1;
 		int trucks = rand.nextInt(limit) + 1;
-    	int deliveries = rand.nextInt(limit) + 1;
     	
     	System.out.println(rows+" by "+columns+" Map with "+trucks+" trucks and "
     			+pickups+" pick up points.");
